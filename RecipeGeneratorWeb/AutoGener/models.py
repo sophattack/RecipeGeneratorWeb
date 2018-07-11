@@ -17,7 +17,7 @@ class CanDo(models.Model):
 
 
 class CanGet(models.Model):
-    """ the meal user can do"""
+    """ the ingredients user can get"""
     name = models.CharField(max_length=100)
     price = models.FloatField()
     cal = models.FloatField()
