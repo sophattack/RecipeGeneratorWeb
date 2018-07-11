@@ -11,7 +11,7 @@ class CanDoAdmin(admin.ModelAdmin):
 
 class CanGetAdmin(admin.ModelAdmin):
     """ admin of CanGet"""
-    list_display = ('name', 'price', 'cal')
+    list_display = ('name', 'cal')
     search_fields = ['name']
 
 admin.site.register(CanDo, CanDoAdmin)
