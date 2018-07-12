@@ -5,7 +5,7 @@ def index(request):
     return render(request, 'AutoGener/home.html')
 
 
-def get_ingredient(request):
+def get_dish(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
@@ -21,4 +21,4 @@ def get_ingredient(request):
     else:
         form = IngredientForm()
 
-    return render(request, 'AutoGener/ingredientform.html', {'form': form})
+    return render(request, 'AutoGener/dishform.html', {'form': form})

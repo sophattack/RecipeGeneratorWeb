@@ -20,7 +20,7 @@ class CanDo(models.Model):
 class CanGet(models.Model):
     """ the ingredients user can get"""
     name = models.CharField(max_length=100)
-    cal = models.PositiveIntegerField(help_text="千卡/100g")
+    cal = models.PositiveIntegerField()
 
     def __str__(self):
         return self.name

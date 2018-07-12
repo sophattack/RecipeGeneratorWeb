@@ -1,0 +1,27 @@
+{% extends 'AutoGener/base.html' %}
+
+
+{% block main %}
+
+
+<form class="col-md-4" action="/addIngredient/" method="post">
+  <fieldset>
+    <legend>添加我会做的菜</legend>
+    {% csrf_token %}
+      <div class="form-group">
+      <label for="exampleInputPassword1">菜名</label>
+      {{ form.name }}
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">种类</label>
+      {{ form.type }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </fieldset>
+</form>
+
+
+
+{% endblock %}
+

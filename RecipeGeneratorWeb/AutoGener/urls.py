@@ -5,6 +5,6 @@ from . import views
 app_name = 'AutoGener'
 urlpatterns = [
     path('', views.index, name='index'),
-    path('ingredient', views.get_ingredient, name='ingredient')
+    path('ingredient', views.get_dish, name='dish')
 
 ]
