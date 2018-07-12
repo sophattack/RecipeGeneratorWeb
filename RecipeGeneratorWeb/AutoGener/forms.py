@@ -1,5 +1,9 @@
 from django import forms
+from .models import CanGet
 
 
-class NameForm(forms.ModelForm):
-    your_name = forms.CharField(label='Your name', max_length=100)
+class IngredientForm(forms.ModelForm):
+    """form of ingredient that can be get"""
+    class Meta:
+        model = CanGet
+        fields = ['name', 'cal']
