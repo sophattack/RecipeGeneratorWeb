@@ -13,7 +13,7 @@
   .dishBlock{
     display:block;
     padding-left:25%;
-    padding-top:5%;
+    padding-top:3%;
     padding-right:25%;
   }
 </style>
@@ -41,7 +41,10 @@
         <a class="nav-link" href="#">安排</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="#">Food Basket</a>
+        <a class="nav-link" href="{% url 'AutoGener:ingredient' %}">食材</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'AutoGener:dish' %}">菜单</a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="#">About</a>

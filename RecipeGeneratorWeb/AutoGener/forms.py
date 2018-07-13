@@ -5,14 +5,22 @@ from .models import CanGet, CanDo
 class DishForm(forms.ModelForm):
     """form of ingredient that can be get"""
     name = forms.CharField(max_length=10)
-    cal = forms.NumberInput()
     class Meta:
         model = CanDo
         fields = ['name', 'type']
-        # widgets = {
-        #     'type': forms.Select(attrs={'class': 'test-type-select'})
-        # }
         labels = {
             'name': '菜名'
         }
 
+
+class IngredientForm(forms.ModelForm):
+    """form of ingredient that can be get"""
+    name = forms.CharField(max_length=10)
+    cal = forms.NumberInput()
+    class Meta:
+        model = CanGet
+        fields = ['name', 'cal']
+
+        labels = {
+            'name': '食材'
+        }

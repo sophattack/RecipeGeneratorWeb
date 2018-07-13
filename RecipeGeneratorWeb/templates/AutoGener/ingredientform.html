@@ -3,12 +3,12 @@
 
 {% block main %}
 <div class = "dishBlock">
-<form action="/dish/" method="post">
+<form action="/ingredient/" method="post">
   <fieldset>
-    <legend>添加我会做的菜</legend>
+    <legend>添加食材</legend>
     {% csrf_token %}
     <div class="form-group">
-      <label for="exampleInputPassword1">菜名</label>
+      <label for="exampleInputPassword1">食材:</label>
       {{ form.name }}
     </div>
     <!--<div class="form-group">-->
@@ -16,8 +16,9 @@
       <!--<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">-->
     <!--</div>-->
     <div class="form-group">
-      <label for="exampleInputPassword1">种类</label>
-      {{ form.type }}
+      <label for="exampleInputPassword1">卡路里:</label>
+      {{ form.cal }}卡/100g
+      <small id="fileHelp" class="form-text text-muted">即刻查询：<a href="https://www.google.ca/search?source=hp&ei=zQNJW7u6H5SRjwSriqe4Cg&q=%E9%A6%99%E8%95%89%E5%8D%A1%E8%B7%AF%E9%87%8C&oq=%E9%A6%99%E8%95%89%E5%8D%A1%E8%B7%AF%E9%87%8C&gs_l=psy-ab.3..0l3.1358.4097.0.4254.13.12.1.0.0.0.105.907.10j2.12.0....0...1c.1j4.64.psy-ab..0.13.909...0i131k1j0i3k1j0i13k1j0i13i10k1j0i12k1.0.JSAOhH8fVQs">卡路里查询</a></a></small>
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
@@ -29,19 +30,19 @@
   {% if duplicate %}
   <div class="alert alert-dismissible alert-danger">
     <button type="button" class="close" data-dismiss="alert" id="closeButton">&times;</button>
-    <strong>Oh snap! 你已经有这道菜了。Try submitting again.
+    <strong>Oh snap! 本食材已经加入你的食材库咯。Try submitting again.
   </div>
   {% endif %}
 </div>
 
 <div class = "dishBlock">
   <div>
-  <h2>我会做的菜</h2>
+  <h2>我能买到的食材</h2>
   <br>
-  {% for dish in canDolist %}
-    <p> {{ dish.name }} </p>
+  {% for inge in ingredientlist %}
+    <p> {{ inge.name }}</p>
   {% empty %}
-    <div><p>还没有会做的菜哦！</p></div>
+    <div><p>还没有食材哦！</p></div>
   </div>
   {% endfor %}
 </div>
