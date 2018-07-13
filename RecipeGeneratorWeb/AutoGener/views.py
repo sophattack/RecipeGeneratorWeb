@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, redirect
 from .forms import DishForm
 from .models import CanDo
 
@@ -14,9 +14,10 @@ def get_dish(request):
         # check whether it's valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required
-            # ...
+            new_dish = form.save(commit=False)
+            new_dish.save()
             # redirect to a new URL:
-            return HttpResponse('thanks')
+            return redirect('/dish')
     canDolist = CanDo.objects.all()
     context = {'canDolist': canDolist, 'form': form}
     return render(request, 'AutoGener/dishform.html', context)
