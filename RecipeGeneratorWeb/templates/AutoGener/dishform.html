@@ -21,6 +21,15 @@
   </fieldset>
 </form>
 
+<div>
+  <h2>我会做的菜</h2>
+  <br>
+  {% for dish in canDolist %}
+    <p> {{ dish.name }} </p>
+  {% empty %}
+    <div><p>还没有会做的菜哦！</p></div>
+  {% endfor %}
+</div>
 
 
 {% endblock %}

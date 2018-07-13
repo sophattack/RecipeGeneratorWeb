@@ -1,14 +1,15 @@
 from django.shortcuts import render, HttpResponse
 from .forms import DishForm
+from .models import CanDo
+
 # Create your views here.
 def index(request):
     return render(request, 'AutoGener/home.html')
 
 
 def get_dish(request):
-    # if this is a POST request we need to process the form data
+    form = DishForm()
     if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
         form = DishForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
@@ -16,10 +17,7 @@ def get_dish(request):
             # ...
             # redirect to a new URL:
             return HttpResponse('thanks')
-
-    # if a GET (or any other method) we'll create a blank form
-    else:
-        form = DishForm()
-
-    return render(request, 'AutoGener/dishform.html', {'form': form})
+    canDolist = CanDo.objects.all()
+    context = {'canDolist': canDolist, 'form': form}
+    return render(request, 'AutoGener/dishform.html', context)
 
