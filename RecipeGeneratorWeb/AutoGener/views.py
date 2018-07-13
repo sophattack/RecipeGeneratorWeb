@@ -9,16 +9,22 @@ def index(request):
 
 def get_dish(request):
     form = DishForm()
+    canDolist = CanDo.objects.all()
+    duplicate = False
     if request.method == 'POST':
         form = DishForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
-            # process the data in form.cleaned_data as required
-            new_dish = form.save(commit=False)
-            new_dish.save()
-            # redirect to a new URL:
-            return redirect('/dish')
-    canDolist = CanDo.objects.all()
-    context = {'canDolist': canDolist, 'form': form}
+            # check duplicate
+            new_dish_name = request.POST.get('name')
+            dish = CanDo.objects.filter(name=new_dish_name)
+            if dish.exists():
+                duplicate = True
+            else:
+                new_dish = form.save(commit=False)
+                new_dish.save()
+            context = {'canDolist': canDolist, 'form': form, 'duplicate': duplicate}
+            return render(request, 'AutoGener/dishform.html', context)
+    context = {'canDolist': canDolist, 'form': form, 'duplicate': duplicate}
     return render(request, 'AutoGener/dishform.html', context)
 

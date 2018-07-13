@@ -2,9 +2,8 @@
 
 
 {% block main %}
-
-
-<form class="col-md-4" action="/dish/" method="post">
+<div class = "dishBlock">
+<form action="/dish/" method="post">
   <fieldset>
     <legend>添加我会做的菜</legend>
     {% csrf_token %}
@@ -20,17 +19,30 @@
     <button type="submit" class="btn btn-primary">Submit</button>
   </fieldset>
 </form>
+</div>
 
-<div>
+<div class = "dishBlock" id="alertBlock">
+  {% if duplicate %}
+  <div class="alert alert-dismissible alert-danger">
+    <button type="button" class="close" data-dismiss="alert" id="closeButton">&times;</button>
+    <strong>Oh snap! 你已经有这道菜了。Try submitting again.
+  </div>
+  {% endif %}
+</div>
+
+<div class = "dishBlock">
+  <div>
   <h2>我会做的菜</h2>
   <br>
   {% for dish in canDolist %}
     <p> {{ dish.name }} </p>
   {% empty %}
     <div><p>还没有会做的菜哦！</p></div>
+  </div>
   {% endfor %}
 </div>
 
 
 {% endblock %}
+
 

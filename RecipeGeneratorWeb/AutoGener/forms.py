@@ -15,3 +15,4 @@ class DishForm(forms.ModelForm):
         labels = {
             'name': '菜名'
         }
+
