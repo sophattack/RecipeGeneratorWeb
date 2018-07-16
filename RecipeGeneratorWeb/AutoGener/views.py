@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import DishForm, IngredientForm
 from .models import CanDo, CanGet
-
+import random
 # Create your views here.
 def index(request):
     return render(request, 'AutoGener/home.html')
@@ -47,3 +47,23 @@ def get_ingredient(request):
                 new_inge.save()
     context = {'ingredientlist': ingredientlist, 'form': form, 'duplicate': duplicate}
     return render(request, 'AutoGener/ingredientform.html', context)
+
+
+def get_scehdele(request):
+    random_dish = []
+    message = ''
+    if request.method == 'POST':
+        need = request.POST.get('numNeed')
+        count = CanDo.objects.all().count()
+        if not need.isdigit():
+            message = '请输入数字'
+        else:
+            if count < int(need):
+                message = '你的菜不足%s道哦' % need
+                random_dish = CanDo.objects.all()
+            if count == int(need):
+                random_dish = CanDo.objects.all()
+            elif count > int(need):
+                rand_ids = random.sample(range(1, count), int(need))
+                random_dish = CanDo.objects.filter(id__in=rand_ids)
+    return render(request, 'AutoGener/schedule.html', {'random_dish': random_dish, "message": message})
