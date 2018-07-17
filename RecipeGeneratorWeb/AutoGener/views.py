@@ -48,8 +48,14 @@ def get_ingredient(request):
             else:
                 new_inge = form.save(commit=False)
                 new_inge.save()
+    # to delete from Canget Database
+
+    # if request.method == 'GET':
+    #     remove_inge = request.GET.get('name')
+
     context = {'ingredientlist': ingredientlist, 'form': form, 'duplicate': duplicate}
     return render(request, 'AutoGener/ingredientform.html', context)
+
 
 
 def get_scehdele(request):

@@ -56,7 +56,11 @@
   <h2>我能买到的食材</h2>
   <br>
   {% for inge in ingredientlist %}
-    <p> {{ inge.name }} {{ inge.cal }}卡/100g</p>
+      <form action="/ingredient/" method="get">
+        <p> <a href="#">{{ inge.name }}</a> {{ inge.cal }}卡/100g
+      <button type="button" class="close" data-dismiss="alert" id="closeButton">&times;</button>
+        </p>
+    </form>
   {% empty %}
     <div><p>还没有食材哦！</p></div>
   </div>

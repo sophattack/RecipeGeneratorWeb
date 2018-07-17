@@ -1,6 +1,16 @@
 from django.db import models
 
 # Create your models here.
+
+class CanGet(models.Model):
+    """ the ingredients user can get"""
+    name = models.CharField(max_length=10)
+    cal = models.PositiveIntegerField()
+
+    def __str__(self):
+        return self.name
+
+
 class CanDo(models.Model):
     """ the meal user can do"""
     TYPE_CHOICES = (
@@ -12,15 +22,9 @@ class CanDo(models.Model):
     )
     name = models.CharField(max_length=100)
     type = models.CharField(max_length=5, choices=TYPE_CHOICES, default='暂不选择')
+    # ingre = models.ForeignKey(CanGet, models.PROTECT)
 
     def __str__(self):
         return self.name
 
 
-class CanGet(models.Model):
-    """ the ingredients user can get"""
-    name = models.CharField(max_length=100)
-    cal = models.PositiveIntegerField()
-
-    def __str__(self):
-        return self.name

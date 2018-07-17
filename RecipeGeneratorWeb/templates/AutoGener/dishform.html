@@ -11,6 +11,7 @@
       <label for="exampleInputPassword1">菜名</label>
       {{ form.name }}
     </div>
+
     <!--<div class="form-group">-->
       <!--<label for="exampleInputEmail1">菜名</label>-->
       <!--<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">-->
@@ -40,6 +41,8 @@
   <br>
   {% for dish in canDolist %}
     <p> {{ dish.name }} </p>
+
+    <!--需要加上食材+克数=最终卡路里-->
   {% empty %}
     <div><p>还没有会做的菜哦！</p></div>
   </div>
