@@ -7,6 +7,7 @@
             {% csrf_token %}
         <div class="form-group">
           <legend>需要几道不同的菜？</legend>
+            {{ message }}
           <input type="text" class="form-control" name="numNeed">
         </div>
         <button type="submit" class="btn btn-primary">随机抽取</button>
@@ -17,7 +18,6 @@
 
 
 <div class = "dishBlock">
-    {{ message }}
   <div>
   <h2>安排下列菜品咯</h2>
   <br>

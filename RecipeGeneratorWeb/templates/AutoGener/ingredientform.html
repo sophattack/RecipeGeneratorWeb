@@ -18,12 +18,28 @@
     <div class="form-group">
       <label for="exampleInputPassword1">卡路里:</label>
       {{ form.cal }}卡/100g
-      <small id="fileHelp" class="form-text text-muted">即刻查询：<a href="https://www.google.ca/search?source=hp&ei=zQNJW7u6H5SRjwSriqe4Cg&q=%E9%A6%99%E8%95%89%E5%8D%A1%E8%B7%AF%E9%87%8C&oq=%E9%A6%99%E8%95%89%E5%8D%A1%E8%B7%AF%E9%87%8C&gs_l=psy-ab.3..0l3.1358.4097.0.4254.13.12.1.0.0.0.105.907.10j2.12.0....0...1c.1j4.64.psy-ab..0.13.909...0i131k1j0i3k1j0i13k1j0i13i10k1j0i12k1.0.JSAOhH8fVQs">卡路里查询</a></a></small>
+      <small id="fileHelp" class="form-text text-muted">即刻查询：<a href="http://www.boohee.com/food/">卡路里查询</a></a></small>
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
   </fieldset>
 </form>
+</div>
+
+
+
+<div class="dishBlock">
+<legend>简单计算</legend>
+  <p>计算后可以在👆输入<input id="cal" class="col-form-label col-form-label-sm" placeholder="卡/100" />卡/100g</p>
+<body>
+  <input id="calo" class="col-form-label col-form-label-sm" placeholder="卡路里" />卡
+  <br>
+  <br>
+  <input id="weight" class="col-form-label col-form-label-sm" placeholder="克数" />g
+  <br>
+  <br>
+</body>
+
 </div>
 
 <div class = "dishBlock" id="alertBlock">
@@ -40,7 +56,7 @@
   <h2>我能买到的食材</h2>
   <br>
   {% for inge in ingredientlist %}
-    <p> {{ inge.name }}</p>
+    <p> {{ inge.name }} {{ inge.cal }}卡/100g</p>
   {% empty %}
     <div><p>还没有食材哦！</p></div>
   </div>

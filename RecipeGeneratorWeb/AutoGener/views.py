@@ -39,6 +39,9 @@ def get_ingredient(request):
         if form.is_valid():
             # check duplicate
             new_inge_name = request.POST.get('name')
+            # weight = request.POST.get('weight')
+            # calo = request.POST.get('calo')
+            # cal = calo/weight
             dish = CanGet.objects.filter(name=new_inge_name)
             if dish.exists():
                 duplicate = True
