@@ -9,24 +9,6 @@
 </head>
 <body>
 
-<style>
-  .dishBlock{
-    display:block;
-    padding-left:25%;
-    padding-top:3%;
-    padding-right:25%;
-  }
-</style>
-
-
-<style>
-  .calculateBlock{
-    display:block;
-    padding-left:60%;
-    padding-top:3%;
-    padding-right:25%;
-  }
-</style>
 
 <script type="text/javascript">
 $(function (){
@@ -77,11 +59,24 @@ $("#cal").val(sum);
     </form>
   </div>
 </nav>
-
-
+<br>
+<br>
+<div class = "row">
+  <div class="col-md-3">
+  </div>
+<div class="col-md-4">
   {% block main %}
 
   {% endblock %}
+</div>
+
+<div class="col-md-4">
+    {% block side %}
+
+    {% endblock %}
+</div>
+
+
 </div>
 </body>
 </html>

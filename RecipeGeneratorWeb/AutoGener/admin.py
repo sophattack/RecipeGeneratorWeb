@@ -16,3 +16,4 @@ class CanGetAdmin(admin.ModelAdmin):
 
 admin.site.register(CanDo, CanDoAdmin)
 admin.site.register(CanGet, CanGetAdmin)
+# admin.site.register(Compose)

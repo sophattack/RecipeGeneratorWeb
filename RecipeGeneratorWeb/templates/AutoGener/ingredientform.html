@@ -3,71 +3,80 @@
 
 {% block main %}
 <div class = "dishBlock">
-<form action="/ingredient/" method="post">
-  <fieldset>
-    <legend>添加食材</legend>
-    {% csrf_token %}
-    <div class="form-group">
-      <label for="exampleInputPassword1">食材:</label>
-      {{ form.name }}
-    </div>
-    <!--<div class="form-group">-->
-      <!--<label for="exampleInputEmail1">菜名</label>-->
-      <!--<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">-->
-    <!--</div>-->
-    <div class="form-group">
-      <label for="exampleInputPassword1">卡路里:</label>
-      {{ form.cal }}卡/100g
-      <small id="fileHelp" class="form-text text-muted">即刻查询：<a href="http://www.boohee.com/food/">卡路里查询</a></a></small>
-    </div>
+  <form action="/ingredient/" method="post">
+    <fieldset>
+      <legend>添加食材</legend>
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="exampleInputPassword1">食材:</label>
+        {{ form.name }}
+      </div>
+      <!--<div class="form-group">-->
+        <!--<label for="exampleInputEmail1">菜名</label>-->
+        <!--<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">-->
+      <!--</div>-->
+      <div class="form-group">
+        <label for="exampleInputPassword1">卡路里:</label>
+        {{ form.cal }}卡/100g
+        <small id="fileHelp" class="form-text text-muted">即刻查询：<a href="http://www.boohee.com/food/" target="_blank">卡路里查询</a></a></small>
+        <small id="fileHelp" class="form-text text-muted">单位不标准？：在右侧计算</small>
+      </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </fieldset>
-</form>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </fieldset>
+  </form>
 </div>
 
 
-
-<div class="dishBlock">
-<legend>简单计算</legend>
-  <p>计算后可以在👆输入<input id="cal" class="col-form-label col-form-label-sm" placeholder="卡/100" />卡/100g</p>
-<body>
-  <input id="calo" class="col-form-label col-form-label-sm" placeholder="卡路里" />卡
-  <br>
-  <br>
-  <input id="weight" class="col-form-label col-form-label-sm" placeholder="克数" />g
-  <br>
-  <br>
-</body>
-
-</div>
 
 <div class = "dishBlock" id="alertBlock">
   {% if duplicate %}
   <div class="alert alert-dismissible alert-danger">
     <button type="button" class="close" data-dismiss="alert" id="closeButton">&times;</button>
-    <strong>Oh snap! 本食材已经加入你的食材库咯。Try submitting again.
+    <strong>Oh snap! 本食材已经加入你的食材库咯。Try submitting again.</strong>
   </div>
   {% endif %}
 </div>
 
-<div class = "dishBlock">
+<br>
+<br>
+
+<div>
   <div>
   <h2>我能买到的食材</h2>
   <br>
   {% for inge in ingredientlist %}
       <form action="/ingredient/" method="get">
         <p> <a href="#">{{ inge.name }}</a> {{ inge.cal }}卡/100g
-      <button type="button" class="close" data-dismiss="alert" id="closeButton">&times;</button>
+      <button type="button" href="{% url 'AutoGener:ingredient' %}" class="close" data-dismiss="alert" id="closeButton">&times;</button>
         </p>
     </form>
   {% empty %}
     <div><p>还没有食材哦！</p></div>
-  </div>
   {% endfor %}
+    </div>
 </div>
 
 
 {% endblock %}
 
 
+
+
+
+{% block side %}
+  <div>
+  <legend>简单计算</legend>
+    <p>←计算后可以输入
+    <br>
+    <input id="calo" class="col-form-label col-form-label-sm" placeholder="卡路里" />卡
+    <br>
+    <br>
+    <input id="weight" class="col-form-label col-form-label-sm" placeholder="克数" />g
+    <br>
+    <br>
+    <input id="cal" class="col-form-label col-form-label-sm" placeholder="卡/100" />卡/100g</p>
+
+
+  </div>
+{% endblock %}

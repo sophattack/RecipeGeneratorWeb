@@ -22,9 +22,15 @@ class CanDo(models.Model):
     )
     name = models.CharField(max_length=100)
     type = models.CharField(max_length=5, choices=TYPE_CHOICES, default='暂不选择')
-    # ingre = models.ForeignKey(CanGet, models.PROTECT)
+    ingre = models.ManyToManyField(CanGet, blank=True)
 
     def __str__(self):
         return self.name
 
 
+# class Compose(models.Model):
+#     dish = models.ForeignKey(CanDo, models.PROTECT)
+#     ingre = models.ForeignKey(CanGet, models.PROTECT)
+#
+#     def __str__(self):
+#         return self.dish.name

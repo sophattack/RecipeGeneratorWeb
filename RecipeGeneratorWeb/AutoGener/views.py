@@ -23,8 +23,12 @@ def get_dish(request):
             else:
                 new_dish = form.save(commit=False)
                 new_dish.save()
-            # context = {'canDolist': canDolist, 'form': form, 'duplicate': duplicate}
-            # return render(request, 'AutoGener/dishform.html', context)
+                dish_ingredient_str = request.POST.get('dish_ingredient')
+                dish_ingredient_list = dish_ingredient_str.split(',')
+                for ingredient in dish_ingredient_list:
+                    ingre = CanGet.objects.get(name=ingredient)
+                    new_dish.ingre.add(ingre)
+
     context = {'canDolist': canDolist, 'form': form, 'duplicate': duplicate}
     return render(request, 'AutoGener/dishform.html', context)
 
@@ -39,22 +43,18 @@ def get_ingredient(request):
         if form.is_valid():
             # check duplicate
             new_inge_name = request.POST.get('name')
-            # weight = request.POST.get('weight')
-            # calo = request.POST.get('calo')
-            # cal = calo/weight
             dish = CanGet.objects.filter(name=new_inge_name)
             if dish.exists():
                 duplicate = True
             else:
                 new_inge = form.save(commit=False)
                 new_inge.save()
-    # to delete from Canget Database
 
-    # if request.method == 'GET':
-    #     remove_inge = request.GET.get('name')
 
     context = {'ingredientlist': ingredientlist, 'form': form, 'duplicate': duplicate}
     return render(request, 'AutoGener/ingredientform.html', context)
+
+# def delete_ingredient(request, name):
 
 
 
@@ -73,6 +73,5 @@ def get_scehdele(request):
             if count == int(need):
                 random_dish = CanDo.objects.all()
             elif count > int(need):
-                rand_ids = random.sample(range(1, count), int(need))
-                random_dish = CanDo.objects.filter(id__in=rand_ids)
+                random_dish = CanDo.objects.order_by('?')[:int(need)]
     return render(request, 'AutoGener/schedule.html', {'random_dish': random_dish, "message": message})
