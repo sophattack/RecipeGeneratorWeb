@@ -18,18 +18,18 @@
       <div class="form-group">
         <label for="exampleInputPassword1">卡路里:</label>
         {{ form.cal }}卡/100g
-        <small id="fileHelp" class="form-text text-muted">即刻查询：<a href="http://www.boohee.com/food/" target="_blank">卡路里查询</a></a></small>
+        <small id="fileHelp" class="form-text text-muted">即刻查询：<a href="http://www.boohee.com/food/" target="_blank">卡路里查询</a></small>
         <small id="fileHelp" class="form-text text-muted">单位不标准？：在右侧计算</small>
       </div>
 
       <a class="btn btn-primary" target="_blank" href="{% url 'AutoGener:dish' %}" >前往添加新菜</a>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary">添加</button>
     </fieldset>
   </form>
 </div>
 
 
-
+<br>
 <div id="alertBlock">
   {% if duplicate %}
   <div class="alert alert-dismissible alert-danger">
@@ -46,12 +46,10 @@
   <div>
   <h2>我能买到的食材</h2>
   <br>
-  {% for inge in ingredientlist %}
-      <form action="/ingredient/" method="get">
-        <p> <a href="#">{{ inge.name }}</a> {{ inge.cal }}卡/100g
-      <button type="button" href="{% url 'AutoGener:ingredient' %}" class="close" data-dismiss="alert" id="closeButton">&times;</button>
+  {% for ingre in ingredientlist %}
+        <p> <a href="#">{{ ingre.name }}</a> {{ ingre.cal }}卡/100g
+          <a class="close" href="{% url 'AutoGener:ingre_delete' ingre.name %}" >&times;</a>
         </p>
-    </form>
   {% empty %}
     <div><p>还没有食材哦！</p></div>
   {% endfor %}

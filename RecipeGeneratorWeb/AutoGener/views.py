@@ -66,21 +66,34 @@ def get_ingredient(request):
         if form.is_valid():
             # check duplicate
             new_inge_name = request.POST.get('name')
-            dish = CanGet.objects.filter(name=new_inge_name)
-            if dish.exists():
-                duplicate = '已有该食材，请重新输入'
-            else:
+            try:
+                ingre = CanGet.objects.get(name=new_inge_name)
+                # 存在且卡路里数据相同
+                if ingre.cal == int(request.POST.get('cal')):
+                    duplicate = '已有该食材，请重新输入'
+                else:
+                    ingre.delete()
+                    raise ObjectDoesNotExist
+            except ObjectDoesNotExist:
                 new_inge = form.save(commit=False)
                 new_inge.save()
-                duplicate = '添加成功'
-
+                duplicate = '添加/更新你的食材卡路里数据成功'
+        else:
+            duplicate = '请输入正确数据'
 
     context = {'ingredientlist': ingredientlist, 'form': form, 'duplicate': duplicate}
     return render(request, 'AutoGener/ingredientform.html', context)
 
-# def delete_ingredient(request, name):
 
+def ingre_delete(request, name):
+    ingre = get_object_or_404(CanGet, name=name)
+    ingre.delete()
+    return redirect('/ingredient/')
 
+def dish_delete(request, name):
+    dish = get_object_or_404(CanDo, name=name)
+    dish.delete()
+    return redirect('/dish/')
 
 def get_scehdele(request):
     random_dish = []

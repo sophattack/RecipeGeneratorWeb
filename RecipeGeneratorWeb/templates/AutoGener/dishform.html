@@ -24,7 +24,7 @@
       {{ form.type }}
     </div>
     <a class="btn btn-primary" target="_blank" href="{% url 'AutoGener:ingredient' %}" >前往添加食材</a>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">添加菜品</button>
   </fieldset>
 </form>
 </div>
@@ -44,8 +44,9 @@
   <h2>我会做的菜</h2>
   <br>
   {% for dish in canDolist %}
-    <p> {{ dish.name }}</p>
-
+    <p> {{ dish.name }}
+    <a class="close" href="{% url 'AutoGener:dish_delete' dish.name %}" >&times;</a>
+    </p>
     <!--需要加上食材+克数=最终卡路里-->
   {% empty %}
     <div><p>还没有会做的菜哦！</p></div>
