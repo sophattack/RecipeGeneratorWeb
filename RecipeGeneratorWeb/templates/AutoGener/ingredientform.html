@@ -23,7 +23,7 @@
       </div>
 
       <a class="btn btn-primary" target="_blank" href="{% url 'AutoGener:dish' %}" >前往添加新菜</a>
-      <button type="submit" class="btn btn-primary">添加</button>
+      <button type="submit" class="btn btn-primary">添加食材</button>
     </fieldset>
   </form>
 </div>
@@ -66,7 +66,7 @@
 {% block side %}
   <div>
   <legend>简单计算</legend>
-    <p>←计算后可以输入
+    <p>单位不规则？在下方输入数据
     <br>
     <input id="calo" class="col-form-label col-form-label-sm" placeholder="卡路里" />卡
     <br>
@@ -74,8 +74,7 @@
     <input id="weight" class="col-form-label col-form-label-sm" placeholder="克数" />g
     <br>
     <br>
-    <input id="cal" class="col-form-label col-form-label-sm" placeholder="卡/100" />卡/100g</p>
-
+    <button class="btn btn-primary" id="calculate" >计算并填到左边</button>
 
   </div>
 {% endblock %}

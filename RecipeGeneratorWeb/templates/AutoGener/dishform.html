@@ -39,22 +39,44 @@
   {% endif %}
 </div>
 
-<div class = "dishBlock">
+<div >
   <div>
   <h2>我会做的菜</h2>
+      <form class="form-inline my-2 my-lg-0" method="POST" action="{% url 'AutoGener:dish' %}">
+        {% csrf_token %}
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" name="dish_wanted">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+    </form>
   <br>
   {% for dish in canDolist %}
-    <p> {{ dish.name }}
+    <p> <a href="{% url 'AutoGener:dish_detail' dish.name%}">{{ dish.name }}</a>
     <a class="close" href="{% url 'AutoGener:dish_delete' dish.name %}" >&times;</a>
     </p>
     <!--需要加上食材+克数=最终卡路里-->
   {% empty %}
     <div><p>还没有会做的菜哦！</p></div>
-  </div>
   {% endfor %}
+    </div>
 </div>
 
 
 {% endblock %}
 
 
+{% block side %}
+
+  <h3>{{ detail }}</h3>
+  {% for ingre in ingre_list %}
+    <div class="form-group">
+        <label>{{ ingre.name }}</label>
+          <form action="" method="post">
+            <input id="ingre_weight" min="0" placeholder="克数" style="width: 20%"/>&times;
+            <input id="cal_data" value="{{ ingre.cal }}" style="width: 20%">卡/100克
+            =<input id="cal_result" class="col-form-label col-form-label-sm" style="width: 20%" />卡
+          </form>
+    </div>
+  {% endfor %}
+  total = <input id="total" class="col-form-label col-form-label-sm" style="width: 20%" />卡
+
+
+{% endblock%}

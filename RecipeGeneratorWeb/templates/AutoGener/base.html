@@ -11,12 +11,22 @@
 
 
 <script type="text/javascript">
-$(function (){
-$("input").blur(function (){
-var sum = parseInt(parseInt($("#calo").val()*100/$("#weight").val()));
-$("#cal").val(sum);
-})
-})
+  $(function (){
+  $("#calculate").click(function(){
+
+    var cal = parseInt(parseInt($("#calo").val()*100/$("#weight").val()));
+    $("#ingre_cal").val(cal);
+  })
+  })
+</script>
+
+<script type="text/javascript">
+  $(function (){
+    $("input").blur(function (){
+    var cal = parseInt(parseInt($("#ingre_weight").val()*$("#cal_data").val()));
+    $("#cal_result").val(cal);
+  })
+  })
 </script>
 
 <script>

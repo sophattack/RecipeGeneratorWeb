@@ -4,8 +4,9 @@ from . import views
 
 app_name = 'AutoGener'
 urlpatterns = [
-    path(r'dish/(?P<name>[a-z]$', views.dish_delete, name='dish_delete'),
-    path(r'ingredient/(?P<name>[a-z]$', views.ingre_delete, name='ingre_delete'),
+    path(r'dish/delete/<name>', views.dish_delete, name='dish_delete'),
+    path('detail/<name>', views.get_dish_detail, name='dish_detail'),
+    path(r'ingredient/<name>', views.ingre_delete, name='ingre_delete'),
     path('schedule/', views.get_scehdele, name='schedule'),
     path('', views.index, name='index'),
     path('dish/', views.get_dish, name='dish'),

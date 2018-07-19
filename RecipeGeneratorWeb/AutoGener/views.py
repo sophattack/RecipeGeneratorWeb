@@ -15,7 +15,15 @@ def get_dish(request):
     form = DishForm()
     canDolist = CanDo.objects.all()
     message = ''
+    detail = ''
     if request.method == 'POST':
+        detail = request.POST.get('dish_wanted')
+        if detail:
+            try:
+                dish = CanDo.objects.get(name=detail)
+                return redirect('/detail/' + detail)
+            except ObjectDoesNotExist:
+                message="%s不在你的菜单里" % detail
         form = DishForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
@@ -52,12 +60,25 @@ def get_dish(request):
             else:
                 message = '请输入食材'
 
-    context = {'canDolist': canDolist, 'form': form, 'message': message}
+    context = {'canDolist': canDolist, 'form': form, 'message': message, 'detail':detail}
+    return render(request, 'AutoGener/dishform.html', context)
+
+
+def get_dish_detail(request, name):
+    form = DishForm()
+    canDolist = CanDo.objects.all()
+    message = ''
+    detail = name
+    dish = get_object_or_404(CanDo, name=name)
+    ingre_list = dish.ingre.all()
+    # if request.method == 'POST':
+    #     ingre_weight = request.POST.get('ingre_weight')
+    context = {'canDolist': canDolist, 'form': form, 'message': message, 'detail': detail, 'ingre_list':ingre_list}
     return render(request, 'AutoGener/dishform.html', context)
 
 
 def get_ingredient(request):
-    form = IngredientForm()
+    form = IngredientForm(auto_id="ingre_%s")
     ingredientlist = CanGet.objects.all()
     duplicate = ''
     if request.method == 'POST':
