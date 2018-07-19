@@ -7,7 +7,6 @@
             {% csrf_token %}
         <div class="form-group">
           <legend>需要几道不同的菜？</legend>
-            {{ message }}
           <input type="text" class="form-control" name="numNeed">
         </div>
         <button type="submit" class="btn btn-primary">随机抽取</button>
@@ -16,6 +15,16 @@
 </div>
 
 <br>
+
+<div id="alertBlock">
+  {% if message %}
+  <div class="alert alert-dismissible alert-danger">
+    <button type="button" class="close" data-dismiss="alert" id="closeButton">&times;</button>
+    <strong>{{ message }}</strong>
+  </div>
+  {% endif %}
+</div>
+
 <br>
 
 <div class = "dishBlock">
