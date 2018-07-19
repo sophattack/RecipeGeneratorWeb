@@ -23,7 +23,7 @@
       <label for="exampleInputPassword1">种类</label>
       {{ form.type }}
     </div>
-
+    <a class="btn btn-primary" target="_blank" href="{% url 'AutoGener:ingredient' %}" >前往添加食材</a>
     <button type="submit" class="btn btn-primary">Submit</button>
   </fieldset>
 </form>
@@ -31,10 +31,10 @@
 <br>
 <br>
 <div id="alertBlock">
-  {% if duplicate %}
+  {% if message %}
   <div class="alert alert-dismissible alert-danger">
     <button type="button" class="close" data-dismiss="alert" id="closeButton">&times;</button>
-    <strong>Oh snap! 你已经有这道菜了。Try submitting again.
+    <strong>{{ message }}</strong>
   </div>
   {% endif %}
 </div>
@@ -44,7 +44,7 @@
   <h2>我会做的菜</h2>
   <br>
   {% for dish in canDolist %}
-    <p> {{ dish.name }} </p>
+    <p> {{ dish.name }}</p>
 
     <!--需要加上食材+克数=最终卡路里-->
   {% empty %}

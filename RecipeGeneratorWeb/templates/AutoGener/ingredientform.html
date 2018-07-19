@@ -22,6 +22,7 @@
         <small id="fileHelp" class="form-text text-muted">单位不标准？：在右侧计算</small>
       </div>
 
+      <a class="btn btn-primary" target="_blank" href="{% url 'AutoGener:dish' %}" >前往添加新菜</a>
       <button type="submit" class="btn btn-primary">Submit</button>
     </fieldset>
   </form>
@@ -29,11 +30,11 @@
 
 
 
-<div class = "dishBlock" id="alertBlock">
+<div id="alertBlock">
   {% if duplicate %}
   <div class="alert alert-dismissible alert-danger">
     <button type="button" class="close" data-dismiss="alert" id="closeButton">&times;</button>
-    <strong>Oh snap! 本食材已经加入你的食材库咯。Try submitting again.</strong>
+    <strong>{{ duplicate }}</strong>
   </div>
   {% endif %}
 </div>
