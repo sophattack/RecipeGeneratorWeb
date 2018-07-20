@@ -44,7 +44,7 @@
   <h2>我能买到的食材</h2>
   <br>
   {% for ingre in ingredientlist %}
-        <p> <a href="#">{{ ingre.name }}</a> {{ ingre.cal }}卡/100g
+        <p> <a href="{% url 'AutoGener:dish_detail' ingre.name %}">{{ ingre.name }}</a> {{ ingre.cal }}卡/100g
           <a class="close" href="{% url 'AutoGener:ingre_delete' ingre.name %}" >&times;</a>
         </p>
   {% empty %}
