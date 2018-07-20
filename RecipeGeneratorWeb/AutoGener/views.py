@@ -51,17 +51,22 @@ def get_dish(request):
                 dish.save()
                 message = '成功添加'
             if dish_ingredient_str:
+                not_in_ingre = ''
                 for ingredient in dish_ingredient_list:
                     try:
                         ingre = CanGet.objects.get(name=ingredient)
                         dish.ingre.add(ingre)
                     except ObjectDoesNotExist:
-                        message = "请先添加%s, 再回来添加" % ingredient
+                        not_in_ingre += ingredient + '，'
+                if not_in_ingre:
+                    message = "以下食材不在食品库：%s 请先去添加食材，再添加菜品，才可计算卡路里哦" % not_in_ingre
+                else:
+                    message = '添加成功！'
             # 菜存在，但是没有食材
             else:
                 message = '请输入食材'
 
-    context = {'canDolist': canDolist, 'form': form, 'message': message, 'detail':detail}
+    context = {'canDolist': canDolist, 'form': form, 'message': message, 'detail': detail}
     return render(request, 'AutoGener/dishform.html', context)
 
 

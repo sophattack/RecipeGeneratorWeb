@@ -72,6 +72,7 @@
 
 
 {% block side %}
+{% if dish.name %}
     <h3>{{ dish.name }}</h3>
     {% for ingre in ingre_list %}
       <div class="form-group">
@@ -80,13 +81,14 @@
               {% csrf_token %}
               <input id="ingre_weight_{{ forloop.counter }}"  min="0" placeholder="克数" style="width: 20%"/>g&times;
               <input id="cal_data_{{ forloop.counter }}" value="{{ ingre.cal }}" style="width: 20%">卡/100克
-              =<input class="cal_result" id="cal_result_{{ forloop.counter }}" class="col-form-label col-form-label-sm" style="width: 20%" />卡
+              =<input class="cal_result" id="cal_result_{{ forloop.counter }}"
+                      class="col-form-label col-form-label-sm" style="width: 20%" disabled=""/>卡
 
             </form>
       </div>
 
    {% endfor %}
   <button id="doit">计算</button>
-  total = <input id="total1" >卡</input>
-  <p id="test"></p>
+  total = <input id="total1" style="width: 20%" disabled="">卡</input>
+{% endif%}
 {% endblock%}

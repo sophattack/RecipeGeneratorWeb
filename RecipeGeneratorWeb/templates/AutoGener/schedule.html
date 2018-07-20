@@ -32,7 +32,7 @@
   <h2>安排下列菜品咯</h2>
   <br>
   {% for dish in random_dish %}
-    <p> {{ dish.name }}</p>
+      <p> <a href="{% url 'AutoGener:dish_detail' dish.name %}">{{ dish.name }}</a></p>
   {% empty %}
       <div><p>还没有添加会做的菜哦哦！<a hred="{% url 'AutoGener:dish'%}">点击添加</a></p></div>
   </div>
