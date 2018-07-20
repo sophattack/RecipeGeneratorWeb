@@ -77,6 +77,7 @@
   <div class="card-header">{{ dish.name }}
     <a class="close" href="{% url 'AutoGener:dish_list_remove' dish.name %}" >&times;</a>
   </div>
+
   <div class="card-body">
     <p class="card-text">
           {% for ingre in dish.ingre.all %}
@@ -86,19 +87,14 @@
               {% csrf_token %}
               <input id="{{ dish.name }}{{ forloop.counter }}_weight"  min="0" placeholder="克数" style="width: 18%"/>g&times;
               <input id="{{ dish.name }}{{ forloop.counter }}_data" value="{{ ingre.cal }}" style="width: 18%">卡/100克
-              =<input class="{{ dish.name }}_cal_result" id="{{ dish.name }}{{ forloop.counter }}_each"
-                      class="col-form-label col-form-label-sm" style="width: 18%" disabled=""/>卡
-
+              =<input class="{{ dish.name }}_cal_result" id="{{ dish.name }}{{ forloop.counter }}_each" style="width: 18%" disabled=""/>卡
             </form>
       </div>
    {% endfor %}
   <button id="{{ dish.name }}" onClick="reply_click(this.id)" class="btn btn-primary btn-sm">计算</button>
+  total = <input id="{{ dish.name }}_cal" style="width: 18%" />卡
 
-  total = <input id="{{ dish.name }}_cal" style="width: 18%">卡</input>
-    </p>
   </div>
 </div>
-
-
 {% endfor %}
 {% endblock%}

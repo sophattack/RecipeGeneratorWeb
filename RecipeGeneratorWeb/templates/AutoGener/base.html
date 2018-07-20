@@ -20,31 +20,21 @@
 </script>
 
 
-
 <!--<script type="text/javascript">-->
 <!--$(function (){-->
-		<!--$("input").blur(function (){-->
-			<!--var product = parseInt($("#ingre_weight_2").val()) * parseInt($("#cal_data_2").val());-->
-			<!--$("#cal_result_2").val(product);-->
+		<!--$("#doit").click(function (){-->
+		  <!--var x = document.getElementsByClassName("cal_result").length;-->
+		  <!--var i;-->
+		  <!--var total = 0;-->
+		  <!--for (i = 0; i < x + 1; i++) {-->
+            <!--var product = parseInt($("#ingre_weight_"+i).val()) * parseInt($("#cal_data_"+i).val())/100;-->
+            <!--total += parseInt(product) || 0;-->
+			<!--$("#cal_result_"+i).val(product);-->
+          <!--}-->
+          <!--$("#total1").val(total);-->
 		<!--})-->
 	<!--})-->
 <!--</script>-->
-
-<script type="text/javascript">
-$(function (){
-		$("#doit").click(function (){
-		  var x = document.getElementsByClassName("cal_result").length;
-		  var i;
-		  var total = 0;
-		  for (i = 0; i < x + 1; i++) {
-            var product = parseInt($("#ingre_weight_"+i).val()) * parseInt($("#cal_data_"+i).val())/100;
-            total += parseInt(product) || 0;
-			$("#cal_result_"+i).val(product);
-          }
-          $("#total1").val(total);
-		})
-	})
-</script>
 
 <script type="text/javascript">
 function reply_click(name)
@@ -53,7 +43,7 @@ function reply_click(name)
 		  var i;
 		  var total = 0;
 		  for (i = 1; i < x + 1; i++) {
-            var product = (parseInt(document.getElementById(name+i+"_weight").value)*parseInt(document.getElementById(name+i+"_data").value));
+            var product = (parseInt(document.getElementById(name+i+"_weight").value)*parseInt(document.getElementById(name+i+"_data").value))/100;
             document.getElementById(name+i+"_each").value = product;
             total += parseInt(product) || 0;
           }
@@ -61,14 +51,6 @@ function reply_click(name)
 }
 </script>
 
-<!--<script type="text/javascript">-->
-<!--function reply_click(name)-->
-<!--{-->
-    <!--var product = (parseInt(document.getElementById(name+"1_weight").value)*parseInt(document.getElementById(name+"1_data").value));-->
-    <!--document.getElementById(name+'1_each').value = product-->
-    <!--document.getElementById(name+'_cal').value = product-->
-<!--}-->
-<!--</script>-->
 
 
 <script>
@@ -115,6 +97,8 @@ function reply_click(name)
 <br>
 <div class = "row">
   <div class="col-md-3">
+    {% block left %}
+    {% endblock %}
   </div>
 <div class="col-md-4">
   {% block main %}

@@ -1,5 +1,36 @@
 {% extends 'AutoGener/base.html' %}
 
+{% block left %}
+
+{% for dish in random_dish %}
+<div class="card border-primary mb-3" style="max-width: 20rem;">
+  <div class="card-header">{{ dish.name }}
+  </div>
+  <div class="card-body">
+    <p class="card-text">
+          {% for ingre in dish.ingre.all %}
+      <div class="form-group">
+          <label>{{ ingre.name }} </label>
+            <form action="" method="post">
+              {% csrf_token %}
+              <input id="{{ dish.name }}{{ forloop.counter }}_weight"  min="0" placeholder="克数" style="width: 18%"/>g&times;
+              <input id="{{ dish.name }}{{ forloop.counter }}_data" value="{{ ingre.cal }}" style="width: 18%">卡/100克
+              =<input class="{{ dish.name }}_cal_result" id="{{ dish.name }}{{ forloop.counter }}_each" style="width: 18%" disabled=""/>卡
+            </form>
+      </div>
+   {% endfor %}
+  <button id="{{ dish.name }}" onClick="reply_click(this.id)" class="btn btn-primary btn-sm">计算</button>
+  total = <input id="{{ dish.name }}_cal" style="width: 18%" />卡
+
+  </div>
+</div>
+{% endfor %}
+
+{% endblock%}
+
+
+
+
 {% block main %}
 <div class = "dishBlock">
 <div class="btn-group-vertical" data-toggle="buttons">
