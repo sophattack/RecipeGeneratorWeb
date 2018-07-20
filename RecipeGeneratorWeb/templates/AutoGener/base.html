@@ -13,7 +13,6 @@
 <script type="text/javascript">
   $(function (){
   $("#calculate").click(function(){
-
     var cal = parseInt(parseInt($("#calo").val()*100/$("#weight").val()));
     $("#ingre_cal").val(cal);
   })
@@ -22,9 +21,16 @@
 
 <script type="text/javascript">
   $(function (){
-    $("input").blur(function (){
-    var cal = parseInt(parseInt($("#ingre_weight").val()*$("#cal_data").val()));
-    $("#cal_result").val(cal);
+    $("#doit").click(function (){
+    var weight_list = document.getElementsByClassName("ingre_weight");
+    var date_list = document.getElementsByClassName("cal_data");
+    var cal_result = document.getElementsByClassName("cal_result");
+    var i;
+    for (i = 0; i < weight_list.length; i++) {
+      cal_result[i].id = "cal_result" + (i + 1);
+      var complete = weight_list[i]*cal_result[i];
+      $("#cal_result"+(i+1)).val(complete);
+    })
   })
   })
 </script>

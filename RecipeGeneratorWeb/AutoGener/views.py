@@ -4,6 +4,7 @@ from .models import CanDo, CanGet
 import random
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404
+from django.db.models import Q
 
 # Create your views here.
 def index(request):
@@ -23,7 +24,7 @@ def get_dish(request):
                 dish = CanDo.objects.get(name=detail)
                 return redirect('/detail/' + detail)
             except ObjectDoesNotExist:
-                message="%s不在你的菜单里" % detail
+                message = "%s不在你的菜单里" % detail
         form = DishForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
@@ -66,14 +67,13 @@ def get_dish(request):
 
 def get_dish_detail(request, name):
     form = DishForm()
-    canDolist = CanDo.objects.all()
     message = ''
-    detail = name
     dish = get_object_or_404(CanDo, name=name)
+    realted_dish = [dish]
     ingre_list = dish.ingre.all()
-    # if request.method == 'POST':
-    #     ingre_weight = request.POST.get('ingre_weight')
-    context = {'canDolist': canDolist, 'form': form, 'message': message, 'detail': detail, 'ingre_list':ingre_list}
+    for ingre in ingre_list:
+        realted_dish += ingre.cando_set.filter(~Q(name=name)).all()
+    context = {'canDolist': realted_dish, 'form': form, 'message': message, 'ingre_list': ingre_list, 'dish': dish}
     return render(request, 'AutoGener/dishform.html', context)
 
 
