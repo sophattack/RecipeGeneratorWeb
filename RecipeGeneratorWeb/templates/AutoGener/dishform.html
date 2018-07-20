@@ -72,8 +72,9 @@
 
 
 {% block side %}
-{% if dish.name %}
-    <h3>{{ dish.name }}</h3>
+{% for dish in show_dishes %}
+    <h3>{{ dish.name }}
+    <a class="close" href="{% url 'AutoGener:dish_list_remove' dish.name %}" >&times;</a></h3>
     {% for ingre in ingre_list %}
       <div class="form-group">
           <label>{{ ingre.name }} </label>
@@ -90,5 +91,5 @@
    {% endfor %}
   <button id="doit">计算</button>
   total = <input id="total1" style="width: 20%" disabled="">卡</input>
-{% endif%}
+{% endfor %}
 {% endblock%}

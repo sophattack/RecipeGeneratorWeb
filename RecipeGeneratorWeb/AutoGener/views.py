@@ -7,6 +7,9 @@ from django.shortcuts import get_object_or_404
 from django.db.models import Q
 
 # Create your views here.
+
+show_dishes = []
+
 def index(request):
     return render(request, 'AutoGener/home.html')
 
@@ -62,9 +65,17 @@ def get_dish(request):
             else:
                 message = '请输入食材'
 
-    context = {'canDolist': canDolist, 'form': form, 'message': message, 'detail': detail}
+    context = {'canDolist': canDolist, 'form': form, 'message': message, 'show_dishes': show_dishes}
     return render(request, 'AutoGener/dishform.html', context)
 
+def dish_list_remove(request, name):
+    try:
+        dish = CanDo.objects.get(name=name)
+        if dish in show_dishes:
+            show_dishes.remove(dish)
+        return redirect('/dish/')
+    except ObjectDoesNotExist:
+        return redirect('/dish/')
 
 def get_dish_detail(request, name):
     form = DishForm()
@@ -74,6 +85,7 @@ def get_dish_detail(request, name):
     dish = CanDo()
     try:
         dish = CanDo.objects.get(name=name)
+        show_dishes.append(dish)
         realted_dish = [dish]
         ingre_list = dish.ingre.all()
         for ingre in ingre_list:
@@ -85,7 +97,8 @@ def get_dish_detail(request, name):
         except ObjectDoesNotExist:
             message = "%s不在你的菜单或食材库里" % name
 
-    context = {'canDolist': realted_dish, 'form': form, 'message': message, 'ingre_list': ingre_list, 'dish': dish}
+    context = {'canDolist': realted_dish, 'form': form, 'message': message, 'ingre_list': ingre_list, 'dish': dish,
+               'show_dishes': show_dishes}
     return render(request, 'AutoGener/dishform.html', context)
 
 
