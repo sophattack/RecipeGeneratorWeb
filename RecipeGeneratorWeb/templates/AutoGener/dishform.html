@@ -73,23 +73,32 @@
 
 {% block side %}
 {% for dish in show_dishes %}
-    <h3>{{ dish.name }}
-    <a class="close" href="{% url 'AutoGener:dish_list_remove' dish.name %}" >&times;</a></h3>
-    {% for ingre in ingre_list %}
+<div class="card border-primary mb-3" style="max-width: 20rem;">
+  <div class="card-header">{{ dish.name }}
+    <a class="close" href="{% url 'AutoGener:dish_list_remove' dish.name %}" >&times;</a>
+  </div>
+  <div class="card-body">
+    <p class="card-text">
+          {% for ingre in dish.ingre.all %}
       <div class="form-group">
           <label>{{ ingre.name }} </label>
             <form action="" method="post">
               {% csrf_token %}
-              <input id="ingre_weight_{{ forloop.counter }}"  min="0" placeholder="克数" style="width: 20%"/>g&times;
-              <input id="cal_data_{{ forloop.counter }}" value="{{ ingre.cal }}" style="width: 20%">卡/100克
-              =<input class="cal_result" id="cal_result_{{ forloop.counter }}"
-                      class="col-form-label col-form-label-sm" style="width: 20%" disabled=""/>卡
+              <input id="{{ dish.name }}{{ forloop.counter }}_weight"  min="0" placeholder="克数" style="width: 18%"/>g&times;
+              <input id="{{ dish.name }}{{ forloop.counter }}_data" value="{{ ingre.cal }}" style="width: 18%">卡/100克
+              =<input class="{{ dish.name }}_cal_result" id="{{ dish.name }}{{ forloop.counter }}_each"
+                      class="col-form-label col-form-label-sm" style="width: 18%" disabled=""/>卡
 
             </form>
       </div>
-
    {% endfor %}
-  <button id="doit">计算</button>
-  total = <input id="total1" style="width: 20%" disabled="">卡</input>
+  <button id="{{ dish.name }}" onClick="reply_click(this.id)" class="btn btn-primary btn-sm">计算</button>
+
+  total = <input id="{{ dish.name }}_cal" style="width: 18%">卡</input>
+    </p>
+  </div>
+</div>
+
+
 {% endfor %}
 {% endblock%}

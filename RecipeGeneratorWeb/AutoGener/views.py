@@ -11,11 +11,13 @@ from django.db.models import Q
 show_dishes = []
 
 def index(request):
+    """home page"""
     return render(request, 'AutoGener/home.html')
 
 
 
 def get_dish(request):
+    """ /dish.html, deal with add new dish and redirect if there is a search. """
     form = DishForm()
     canDolist = CanDo.objects.all()
     message = ''
@@ -23,7 +25,7 @@ def get_dish(request):
     if request.method == 'POST':
         detail = request.POST.get('dish_wanted')
         if detail:
-            return redirect('/detail/' + detail)
+            return get_dish_detail(request, detail, search=True)
         form = DishForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
@@ -68,7 +70,9 @@ def get_dish(request):
     context = {'canDolist': canDolist, 'form': form, 'message': message, 'show_dishes': show_dishes}
     return render(request, 'AutoGener/dishform.html', context)
 
+
 def dish_list_remove(request, name):
+    """ remove dish=name from right side of /dish.html """
     try:
         dish = CanDo.objects.get(name=name)
         if dish in show_dishes:
@@ -77,15 +81,18 @@ def dish_list_remove(request, name):
     except ObjectDoesNotExist:
         return redirect('/dish/')
 
-def get_dish_detail(request, name):
+def get_dish_detail(request, name, search=False):
+    """show dish detail on right side of /dish.html"""
     form = DishForm()
     message = ''
+    canDolist = CanDo.objects.all()
     realted_dish = []
     ingre_list = []
     dish = CanDo()
     try:
         dish = CanDo.objects.get(name=name)
-        show_dishes.append(dish)
+        if dish not in show_dishes:
+            show_dishes.append(dish)
         realted_dish = [dish]
         ingre_list = dish.ingre.all()
         for ingre in ingre_list:
@@ -96,13 +103,17 @@ def get_dish_detail(request, name):
             realted_dish = ingre.cando_set.all()
         except ObjectDoesNotExist:
             message = "%s不在你的菜单或食材库里" % name
-
-    context = {'canDolist': realted_dish, 'form': form, 'message': message, 'ingre_list': ingre_list, 'dish': dish,
-               'show_dishes': show_dishes}
+    if not search:
+        context = {'canDolist': canDolist, 'form': form, 'message': message, 'ingre_list': ingre_list, 'dish': dish,
+                'show_dishes': show_dishes}
+    else:
+        context = {'canDolist': realted_dish, 'form': form, 'message': message, 'ingre_list': ingre_list, 'dish': dish,
+                   'show_dishes': show_dishes}
     return render(request, 'AutoGener/dishform.html', context)
 
 
 def get_ingredient(request):
+    """ add new ingredient on /ingredient.html """
     form = IngredientForm(auto_id="ingre_%s")
     ingredientlist = CanGet.objects.all()
     duplicate = ''
@@ -132,16 +143,19 @@ def get_ingredient(request):
 
 
 def ingre_delete(request, name):
+    """delete ingre from database """
     ingre = get_object_or_404(CanGet, name=name)
     ingre.delete()
     return redirect('/ingredient/')
 
 def dish_delete(request, name):
+    """delete dish from database """
     dish = get_object_or_404(CanDo, name=name)
     dish.delete()
     return redirect('/dish/')
 
 def get_scehdele(request):
+    """ randomly pick # of dishes from database """
     random_dish = []
     message = ''
     if request.method == 'POST':
