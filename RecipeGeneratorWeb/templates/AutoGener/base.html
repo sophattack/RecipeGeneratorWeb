@@ -19,20 +19,34 @@
   })
 </script>
 
+
+
+<!--<script type="text/javascript">-->
+<!--$(function (){-->
+		<!--$("input").blur(function (){-->
+			<!--var product = parseInt($("#ingre_weight_2").val()) * parseInt($("#cal_data_2").val());-->
+			<!--$("#cal_result_2").val(product);-->
+		<!--})-->
+	<!--})-->
+<!--</script>-->
+
 <script type="text/javascript">
-  $(function (){
-    $("#doit").click(function (){
-    var weight_list = document.getElementsByClassName("ingre_weight");
-    var date_list = document.getElementsByClassName("cal_data");
-    var cal_result = document.getElementsByClassName("cal_result");
-    var i;
-    for (i = 0; i < weight_list.length; i++) {
-      cal_result[i].id = "cal_result" + (i + 1);
-      var complete = weight_list[i]*cal_result[i];
-      $("#cal_result"+(i+1)).val(complete);
-    })
-  })
-  })
+$(function (){
+		$("#doit").click(function (){
+		  var x = document.getElementsByClassName("cal_result").length;
+		  var i;
+		  var total = 0;
+		  for (i = 0; i < x + 1; i++) {
+            var product = parseInt($("#ingre_weight_"+i).val()) * parseInt($("#cal_data_"+i).val())/100;
+            <!--if (product != null){-->
+              total += parseInt(product) || 0;
+            <!--}-->
+			$("#cal_result_"+i).val(product);
+          }
+          $("#total1").val(total);
+
+		})
+	})
 </script>
 
 <script>

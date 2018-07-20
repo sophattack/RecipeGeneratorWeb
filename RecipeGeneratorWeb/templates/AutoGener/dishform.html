@@ -78,14 +78,15 @@
           <label>{{ ingre.name }} </label>
             <form action="" method="post">
               {% csrf_token %}
-              <input class="ingre_weight" min="0" placeholder="克数" style="width: 20%"/>&times;
-              <input class="cal_data" value="{{ ingre.cal }}" style="width: 20%">卡/100克
-              =<input class="cal_result" class="col-form-label col-form-label-sm" style="width: 20%" />卡
+              <input id="ingre_weight_{{ forloop.counter }}"  min="0" placeholder="克数" style="width: 20%"/>g&times;
+              <input id="cal_data_{{ forloop.counter }}" value="{{ ingre.cal }}" style="width: 20%">卡/100克
+              =<input class="cal_result" id="cal_result_{{ forloop.counter }}" class="col-form-label col-form-label-sm" style="width: 20%" />卡
 
             </form>
       </div>
-  {% endfor %}
-  <button id="doit">计算</button>
-  total = <input id="total" class="col-form-label col-form-label-sm" style="width: 20%" />卡
 
+   {% endfor %}
+  <button id="doit">计算</button>
+  total = <input id="total1" >卡</input>
+  <p id="test"></p>
 {% endblock%}
