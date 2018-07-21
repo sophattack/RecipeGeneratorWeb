@@ -44,11 +44,11 @@
   <h2>我会做的菜</h2>
       <form class="form-inline my-2 my-lg-0" method="POST" action="{% url 'AutoGener:dish' %}">
         {% csrf_token %}
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" name="dish_wanted">
+      <input class="form-control mr-sm-2" type="text" placeholder="输入食材或菜品" name="dish_wanted">
       {% if dish.name %}
         <a href="{% url 'AutoGener:dish' %}" class="btn btn-secondary my-2 my-sm-0">返回</a>
       {% else %}
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">搜索</button>
       {% endif %}
 </div>
     </form>

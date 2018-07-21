@@ -134,6 +134,7 @@ def get_ingredient(request):
             except ObjectDoesNotExist:
                 new_inge = form.save(commit=False)
                 new_inge.save()
+                form = IngredientForm(auto_id="ingre_%s")
                 duplicate = '添加/更新你的食材卡路里数据成功'
         else:
             duplicate = '请输入正确数据'
