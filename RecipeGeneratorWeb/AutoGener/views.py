@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from .forms import DishForm, IngredientForm
-from .models import CanDo, CanGet
+from .models import CanDo, CanGet, DishType
 import random
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404
@@ -42,7 +42,7 @@ def get_dish(request):
                     return render(request, 'AutoGener/dishform.html', context)
                 # 菜已经存在，再次输入了食材，删除原食材重建
                 else:
-                    dish.delete()
+                    dish_delete(request, new_dish_name)
                     raise ObjectDoesNotExist
 
             # 菜不存在
@@ -81,6 +81,16 @@ def dish_list_remove(request, name):
         return redirect('/dish/')
     except ObjectDoesNotExist:
         return redirect('/dish/')
+
+def add_type(request):
+    if request.method == 'GET':
+        new_type = request.GET.get('name')
+        if new_type:
+            DishType(name=new_type).save()
+            return redirect('/dish/')
+        else:
+            return HttpResponse('触发ajax')
+
 
 def get_dish_detail(request, name, search=False):
     """show dish detail on right side of /dish.html"""

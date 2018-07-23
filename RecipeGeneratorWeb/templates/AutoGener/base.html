@@ -6,6 +6,7 @@
     <title>排排菜，Have Your Weekly Meal In Control</title>
     <link rel="stylesheet" href="{% static 'AutoGener/css/bootstrap.css' %}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 </head>
 <body>
 
@@ -41,7 +42,26 @@ function reply_click(name)
 }
 </script>
 
-
+<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+ <!--<script type="text/javascript">-->
+<!--$(document).ready(function(){-->
+	<!--$("#aaaa").clcik(function(){-->
+	    <!--var type_name=document.getElementById('type_name').value;-->
+	    <!--if(!(type_name)){-->
+	      <!--alert("请输入新分类");-->
+	    <!--}-->
+	    <!--else{-->
+		  <!--$.ajax({-->
+		  <!--url:"{% url "AutoGener:add_type" %}",-->
+		  <!--data:{name:type_name},-->
+		  <!--success:function(result){-->
+            <!--alert(result);-->
+		    <!--};-->
+		  <!--});-->
+		<!--};-->
+	<!--});-->
+<!--});-->
+ <!--</script>-->
 
 <script>
   $(document).ready(function(){
@@ -51,7 +71,19 @@ function reply_click(name)
   });
 </script>
 
-
+<script>
+  $(document).ready(function(){
+    $("#aaaa").click(function(){
+    var type_name=document.getElementById('type_name').value;
+      $.ajax({
+      url:"{% url 'AutoGener:add_type' %}",
+      data:{name:type_name},
+      success:function(result){
+        alert(result);
+        };
+    });
+  });
+</script>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" href="{% url 'AutoGener:index' %}">排排菜</a>
