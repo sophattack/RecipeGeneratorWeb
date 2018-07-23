@@ -50,7 +50,8 @@ def get_dish(request):
                 # 新建菜
                 dish = form.save(commit=False)
                 dish.save()
-                message = '成功添加'
+                form.save_m2m()
+                form = DishForm()
             if dish_ingredient_str:
                 not_in_ingre = ''
                 for ingredient in dish_ingredient_list:
@@ -65,7 +66,7 @@ def get_dish(request):
                     message = '添加成功！'
             # 菜存在，但是没有食材
             else:
-                message = '请输入食材'
+                message = '成功添加，但没有记录食材'
 
     context = {'canDolist': canDolist, 'form': form, 'message': message, 'show_dishes': show_dishes}
     return render(request, 'AutoGener/dishform.html', context)
@@ -152,6 +153,8 @@ def ingre_delete(request, name):
 def dish_delete(request, name):
     """delete dish from database """
     dish = get_object_or_404(CanDo, name=name)
+    if dish in show_dishes:
+        show_dishes.remove(dish)
     dish.delete()
     return redirect('/dish/')
 
