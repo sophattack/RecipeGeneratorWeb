@@ -21,7 +21,7 @@ def get_dish(request):
     form = DishForm()
     canDolist = CanDo.objects.all()
     message = ''
-    detail = ''
+    types = DishType.objects.all()
     if request.method == 'POST':
         detail = request.POST.get('dish_wanted')
         if detail:
@@ -68,7 +68,8 @@ def get_dish(request):
             else:
                 message = '成功添加，但没有记录食材'
 
-    context = {'canDolist': canDolist, 'form': form, 'message': message, 'show_dishes': show_dishes}
+    context = {'canDolist': canDolist, 'form': form, 'message': message, 'show_dishes': show_dishes,
+               'types': types}
     return render(request, 'AutoGener/dishform.html', context)
 
 
@@ -82,14 +83,29 @@ def dish_list_remove(request, name):
     except ObjectDoesNotExist:
         return redirect('/dish/')
 
+
 def add_type(request):
     if request.method == 'GET':
         new_type = request.GET.get('name')
         if new_type:
-            DishType(name=new_type).save()
-            return redirect('/dish/')
+            try:
+                type = CanDo.objects.get(name=new_type)
+                # if already exist
+            except ObjectDoesNotExist:
+                DishType(name=new_type).save()
+                return redirect('/dish/')
         else:
             return HttpResponse('触发ajax')
+
+# def type_filter(request, name):
+#     type = get_object_or_404(DishType, name=name)
+#     canDolist = type.cando_set.all()
+#     form = DishForm()
+#     message = ''
+#     types = DishType.objects.all()
+#     context = {'canDolist': canDolist, 'form': form, 'message': message, 'show_dishes': show_dishes,
+#                'types': types}
+#     return render(request, 'AutoGener/dishform.html', context)
 
 
 def get_dish_detail(request, name, search=False):
@@ -160,6 +176,7 @@ def ingre_delete(request, name):
     ingre.delete()
     return redirect('/ingredient/')
 
+
 def dish_delete(request, name):
     """delete dish from database """
     dish = get_object_or_404(CanDo, name=name)
@@ -168,12 +185,21 @@ def dish_delete(request, name):
     dish.delete()
     return redirect('/dish/')
 
+
+def type_delete(request, name):
+    type = get_object_or_404(DishType, name=name)
+    type.delete()
+    return redirect('/dish/')
+
+
 def get_scehdele(request):
     """ randomly pick # of dishes from database """
     random_dish = []
+    required_dish = []
     message = ''
     if request.method == 'POST':
         need = request.POST.get('numNeed')
+        want_eat = request.POST.get('wantEat')
         count = CanDo.objects.all().count()
         if not need.isdigit():
             message = '请输入数字'
@@ -183,6 +209,17 @@ def get_scehdele(request):
                 random_dish = CanDo.objects.all()
             if count == int(need):
                 random_dish = CanDo.objects.all()
-            elif count > int(need):
+            else:
                 random_dish = CanDo.objects.order_by('?')[:int(need)]
-    return render(request, 'AutoGener/schedule.html', {'random_dish': random_dish, "message": message})
+        # 如果有填写想吃的菜
+        if want_eat:
+            want_ingre = want_eat.split('，')
+            for ingre in want_ingre:
+                try:
+                    ingrendent = CanGet.objects.get(name=ingre)
+                    required_dish = ingrendent.cando_set.all()
+                    if not required_dish:
+                        message = '你没有菜用到了%s' % ingre + '； '
+                except ObjectDoesNotExist:
+                    message += '%s 不在你的食材库哦' % ingre + '； '
+    return render(request, 'AutoGener/schedule.html', {'random_dish': list(random_dish) + list(required_dish), "message": message})

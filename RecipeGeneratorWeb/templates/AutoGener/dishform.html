@@ -1,6 +1,7 @@
 {% extends 'AutoGener/base.html' %}
 
 
+
 {% block main %}
 <div>
 <form action="/dish/" method="post">
@@ -22,11 +23,6 @@
     <div class="form-group" id="type_list">
       <label for="exampleInputPassword1">分类</label>
       {{ form.type }}
-      <form action="addtype/" method="get">
-      <button class="btn btn-link" type="submit" id="add_type">+</button>
-      <input type="text" name="name" id='type_name'/>
-      </form>
-
       <!--<a class="btn btn-link" href="{% url 'AutoGener:add_type' %}">&times;</a>-->
     </div>
 
@@ -50,9 +46,6 @@
 
 <div >
   <h2>我会做的菜</h2>
-
-
-  <br>
 
   {% for dish in canDolist %}
     <p> <a href="{% url 'AutoGener:dish_detail' dish.name%}">{{ dish.name }}</a>

@@ -38,7 +38,9 @@
             {% csrf_token %}
         <div class="form-group">
           <legend>需要几道不同的菜？</legend>
-          <input type="text" class="form-control" name="numNeed">
+          <input type="text" class="form-control" name="numNeed" placeholder="需要道数">
+          <legend>指定想吃食材</legend>
+          <input type="text" class="form-control" name="wantEat" placeholder="已有/想吃食材，用逗号隔开">
         </div>
         <button type="submit" class="btn btn-primary">随机抽取</button>
     </form>
@@ -103,7 +105,7 @@
         </select>
       </td>
       <td class="tg-uys7 a2">
-        <select name = "dishes"> 
+        <select name = "dishes">
           <option value = "default">default</option>
           {% for dish in random_dish %}
           <option value = "default">{{ dish.name }}</option>
@@ -111,7 +113,7 @@
         </select>
       </td>
       <td class="tg-yw4l a3">
-        <select name = "dishes"> 
+        <select name = "dishes">
           <option value = "default">default</option>
           {% for dish in random_dish %}
           <option value = "default">{{ dish.name }}</option>
@@ -119,7 +121,7 @@
         </select>
       </td>
       <td class="tg-yw4l a4">
-        <select name = "dishes"> 
+        <select name = "dishes">
           <option value = "default">default</option>
           {% for dish in random_dish %}
           <option value = "default">{{ dish.name }}</option>
@@ -127,7 +129,7 @@
         </select>
       </td>
       <td class="tg-yw4l a5">
-        <select name = "dishes"> 
+        <select name = "dishes">
           <option value = "default">default</option>
           {% for dish in random_dish %}
           <option value = "default">{{ dish.name }}</option>
@@ -135,7 +137,7 @@
         </select>
       </td>
       <td class="tg-yw4l a6">
-        <select name = "dishes"> 
+        <select name = "dishes">
           <option value = "default">default</option>
           {% for dish in random_dish %}
           <option value = "default">{{ dish.name }}</option>
@@ -143,7 +145,7 @@
         </select>
       </td>
       <td class="tg-yw4l a7">
-        <select name = "dishes"> 
+        <select name = "dishes">
           <option value = "default">default</option>
           {% for dish in random_dish %}
           <option value = "default">{{ dish.name }}</option>
@@ -154,7 +156,7 @@
     <tr>
       <td class="tg-88nc">NOON</td>
       <td class="tg-uys7 n1">
-        <select name = "dishes"> 
+        <select name = "dishes">
           <option value = "default">default</option>
           {% for dish in random_dish %}
           <option value = "default">{{ dish.name }}</option>
@@ -162,7 +164,7 @@
         </select>
       </td>
       <td class="tg-uys7 n2">
-        <select name = "dishes"> 
+        <select name = "dishes">
           <option value = "default">default</option>
           {% for dish in random_dish %}
           <option value = "default">{{ dish.name }}</option>
@@ -170,7 +172,7 @@
         </select>
       </td>
       <td class="tg-yw4l n3">
-        <select name = "dishes"> 
+        <select name = "dishes">
           <option value = "default">default</option>
           {% for dish in random_dish %}
           <option value = "default">{{ dish.name }}</option>
@@ -178,7 +180,7 @@
         </select>
       </td>
       <td class="tg-yw4l n4">
-        <select name = "dishes"> 
+        <select name = "dishes">
           <option value = "default">default</option>
           {% for dish in random_dish %}
           <option value = "default">{{ dish.name }}</option>
@@ -186,7 +188,7 @@
         </select>
       </td>
       <td class="tg-yw4l n5">
-        <select name = "dishes"> 
+        <select name = "dishes">
           <option value = "default">default</option>
           {% for dish in random_dish %}
           <option value = "default">{{ dish.name }}</option>
@@ -194,7 +196,7 @@
         </select>
       </td>
       <td class="tg-yw4l n6">
-        <select name = "dishes"> 
+        <select name = "dishes">
           <option value = "default">default</option>
           {% for dish in random_dish %}
           <option value = "default">{{ dish.name }}</option>
@@ -202,7 +204,7 @@
         </select>
       </td>
       <td class="tg-yw4l n7">
-        <select name = "dishes"> 
+        <select name = "dishes">
           <option value = "default">default</option>
           {% for dish in random_dish %}
           <option value = "default">{{ dish.name }}</option>
@@ -213,7 +215,7 @@
     <tr>
       <td class="tg-88nc">PM</td>
       <td class="tg-uys7 p1">
-        <select name = "dishes"> 
+        <select name = "dishes">
           <option value = "default">default</option>
           {% for dish in random_dish %}
           <option value = "default">{{ dish.name }}</option>
@@ -221,7 +223,7 @@
         </select>
       </td>
       <td class="tg-uys7 p2">
-        <select name = "dishes"> 
+        <select name = "dishes">
           <option value = "default">default</option>
           {% for dish in random_dish %}
           <option value = "default">{{ dish.name }}</option>
@@ -229,7 +231,7 @@
         </select>
       </td>
       <td class="tg-yw4l p3">
-        <select name = "dishes"> 
+        <select name = "dishes">
           <option value = "default">default</option>
           {% for dish in random_dish %}
           <option value = "default">{{ dish.name }}</option>
@@ -237,7 +239,7 @@
         </select>
       </td>
       <td class="tg-yw4l p4">
-        <select name = "dishes"> 
+        <select name = "dishes">
           <option value = "default">default</option>
           {% for dish in random_dish %}
           <option value = "default">{{ dish.name }}</option>
@@ -245,7 +247,7 @@
         </select>
       </td>
       <td class="tg-yw4l p5">
-        <select name = "dishes"> 
+        <select name = "dishes">
           <option value = "default">default</option>
           {% for dish in random_dish %}
           <option value = "default">{{ dish.name }}</option>
@@ -253,7 +255,7 @@
         </select>
       </td>
       <td class="tg-yw4l p6">
-        <select name = "dishes"> 
+        <select name = "dishes">
           <option value = "default">default</option>
           {% for dish in random_dish %}
           <option value = "default">{{ dish.name }}</option>
@@ -261,7 +263,7 @@
         </select>
       </td>
       <td class="tg-yw4l p7">
-        <select name = "dishes"> 
+        <select name = "dishes">
           <option value = "default">default</option>
           {% for dish in random_dish %}
           <option value = "default">{{ dish.name }}</option>
