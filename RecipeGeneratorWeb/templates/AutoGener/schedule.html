@@ -70,6 +70,13 @@
       <div><p>还没有添加会做的菜哦哦！<a hred="{% url 'AutoGener:dish'%}">点击添加</a></p></div>
   </div>
   {% endfor %}
+  {% if required_dish %}
+  <p>包含输入的食材的菜:</p>
+  {% for dish in required_dish %}
+      <p> <a href="{% url 'AutoGener:dish_detail' dish.name %}">{{ dish.name }}</a></p>
+  </div>
+  {% endfor %}
+  {% endif %}
 </div>
 
 <div class = "dishBlock">

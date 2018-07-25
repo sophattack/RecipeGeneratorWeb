@@ -214,12 +214,16 @@ def get_scehdele(request):
         # 如果有填写想吃的菜
         if want_eat:
             want_ingre = want_eat.split('，')
+            # e.g. "鱼，虾"
             for ingre in want_ingre:
-                try:
-                    ingrendent = CanGet.objects.get(name=ingre)
-                    required_dish = ingrendent.cando_set.all()
-                    if not required_dish:
-                        message = '你没有菜用到了%s' % ingre + '； '
-                except ObjectDoesNotExist:
-                    message += '%s 不在你的食材库哦' % ingre + '； '
-    return render(request, 'AutoGener/schedule.html', {'random_dish': list(random_dish) + list(required_dish), "message": message})
+                # e.g. 所有名字里包含'虾'的食材
+                ingre_list = CanGet.objects.filter(Q(name__icontains=ingre))
+                if ingre_list:
+                    for ingredient in ingre_list:
+                        required_dish += list(ingredient.cando_set.all())
+                        if not required_dish:
+                            message += '%s在你的食材库，但你没有菜用到了哦' % ingre + '； '
+                # 如果ingre_list是空的，没有相关食材
+                else:
+                    message += '%s 不在你的食材库哦，请去添加' % ingre + '； '
+    return render(request, 'AutoGener/schedule.html', {'random_dish': random_dish, 'required_dish': list(set(required_dish)), "message": message})
