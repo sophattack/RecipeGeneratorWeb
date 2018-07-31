@@ -23,7 +23,10 @@
     <div class="form-group" id="type_list">
       <label for="exampleInputPassword1">分类</label>
       {{ form.type }}
-      <!--<a class="btn btn-link" href="{% url 'AutoGener:add_type' %}">&times;</a>-->
+      <form method="get" action="addtype/">
+        <input type="text" name="new_type">
+        <button type="submit" class="btn btn-link">+</button>
+      <form>
     </div>
 
     <a class="btn btn-primary" target="_blank" href="{% url 'AutoGener:ingredient' %}" >前往添加食材</a>

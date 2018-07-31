@@ -86,16 +86,15 @@ def dish_list_remove(request, name):
 
 def add_type(request):
     if request.method == 'GET':
-        new_type = request.GET.get('name')
+        new_type = request.GET.get('new_type')
         if new_type:
             try:
-                type = CanDo.objects.get(name=new_type)
+                type = DishType.objects.get(name=new_type)
                 # if already exist
+                return HttpResponse('已存在')
             except ObjectDoesNotExist:
                 DishType(name=new_type).save()
-                return redirect('/dish/')
-        else:
-            return HttpResponse('触发ajax')
+    return redirect('/dish/')
 
 # def type_filter(request, name):
 #     type = get_object_or_404(DishType, name=name)
