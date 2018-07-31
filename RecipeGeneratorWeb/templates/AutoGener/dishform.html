@@ -24,16 +24,16 @@
       <label for="exampleInputPassword1">分类</label>
       {{ form.type }}
       <form method="get" action="addtype/">
-        <input type="text" name="new_type">
         <button type="submit" class="btn btn-link">+</button>
-      <form>
+        <input type="text" name="new_type" style="width: 30%">
+      </form>
     </div>
 
     <a class="btn btn-primary" target="_blank" href="{% url 'AutoGener:ingredient' %}" >前往添加食材</a>
     <button type="submit" class="btn btn-primary">添加菜品</button>
   </fieldset>
 </form>
-</div>
+</form>
       <!--<div class="btn btn-link" id="aaaa">hhhh</div>-->
 
 <br>

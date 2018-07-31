@@ -188,7 +188,7 @@ def dish_delete(request, name):
 def type_delete(request, name):
     type = get_object_or_404(DishType, name=name)
     type.delete()
-    return redirect('/dish/')
+    return redirect('/schedule/')
 
 
 def get_scehdele(request):
@@ -196,6 +196,7 @@ def get_scehdele(request):
     random_dish = []
     required_dish = []
     message = ''
+    types = DishType.objects.all()
     if request.method == 'POST':
         need = request.POST.get('numNeed')
         want_eat = request.POST.get('wantEat')
@@ -225,4 +226,6 @@ def get_scehdele(request):
                 # 如果ingre_list是空的，没有相关食材
                 else:
                     message += '%s 不在你的食材库哦，请去添加' % ingre + '； '
-    return render(request, 'AutoGener/schedule.html', {'random_dish': random_dish, 'required_dish': list(set(required_dish)), "message": message})
+    context = {'random_dish': random_dish, 'required_dish': list(set(required_dish)), "message": message,
+               'types':types}
+    return render(request, 'AutoGener/schedule.html', context)
