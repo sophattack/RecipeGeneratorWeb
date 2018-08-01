@@ -1,9 +1,10 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>排排菜，Have Your Weekly Meal In Control</title>
+    <title>{% trans "排排菜，安排你的一周食谱" %}</title>
     <link rel="stylesheet" href="{% static 'AutoGener/css/bootstrap.css' %}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -57,7 +58,7 @@
   .tg .tg-yw4l{
     vertical-align:top;
   }
-  
+
   .foodbasket{
     padding:3%;
     background-color: #a4a4a4;
@@ -66,15 +67,15 @@
     width:100%;
     min-height:200px;
   }
-  
+
   .edit-block{
     display:block;
   }
-  
+
   .tables{
     margin:30px 0;
   }
-  
+
   </style>
 
 <script type="text/javascript">
