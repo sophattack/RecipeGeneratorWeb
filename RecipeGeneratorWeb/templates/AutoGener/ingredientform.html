@@ -1,26 +1,30 @@
 {% extends 'AutoGener/base.html' %}
-
+{% load i18n %}
 
 {% block main %}
 <div class = "dishBlock">
   <form action="/ingredient/" method="post">
     <fieldset>
-      <legend>添加食材</legend>
+      <legend>{% trans "添加食材" %}</legend>
       {% csrf_token %}
       <div class="form-group">
-        <label for="exampleInputPassword1">食材:</label>
+        <label for="exampleInputPassword1">{% trans "食材" %}:</label>
         {{ form.name }}
       </div>
       <div class="form-group">
-        <label for="exampleInputPassword1">卡路里:</label>
-        {{ form.cal }}卡/100g
-        <small id="fileHelp" class="form-text text-muted">即刻查询：<a href="http://www.boohee.com/food/" target="_blank">卡路里查询</a></small>
-        <small id="fileHelp" class="form-text text-muted">单位不标准？：在右侧计算</small>
-        <small id="fileHelp" class="form-text text-muted">摸不清准确卡路里数据？没关系，填大约值，在计算菜品总热量时可以即时修改</small>
+        <label for="exampleInputPassword1">{% trans "卡路里" %}:</label>
+        {{ form.cal }}cal/100g
+        <small id="fileHelp" class="form-text text-muted">
+          {% trans "查询" %}：<a href="http://www.boohee.com/food/" target="_blank">{% trans "卡路里查询" %}</a>
+        </small>
+        <small id="fileHelp" class="form-text text-muted">{% trans "单位不标准？：在右侧计算" %}</small>
+        <small id="fileHelp" class="form-text text-muted">
+          {% trans "摸不清准确卡路里数据？没关系，填大约值，在计算菜品总热量时可以即时修改" %}
+        </small>
       </div>
 
-      <a class="btn btn-primary" target="_blank" href="{% url 'AutoGener:dish' %}" >前往添加新菜</a>
-      <button type="submit" class="btn btn-primary">添加食材</button>
+      <a class="btn btn-primary" target="_blank" href="{% url 'AutoGener:dish' %}" >{% trans "前往添加新菜" %}</a>
+      <button type="submit" class="btn btn-primary">{% trans "添加食材" %}</button>
     </fieldset>
   </form>
 </div>
@@ -41,14 +45,14 @@
 
 <div>
   <div>
-  <h2>我能买到的食材</h2>
+  <h2>{% trans "我能买到的食材" %}</h2>
   <br>
   {% for ingre in ingredientlist %}
-        <p> <a href="{% url 'AutoGener:dish_detail' ingre.name %}">{{ ingre.name }}</a> {{ ingre.cal }}卡/100g
+        <p> <a href="{% url 'AutoGener:dish_detail' ingre.name %}">{{ ingre.name }}</a> {{ ingre.cal }}cal/100g
           <a class="close" href="{% url 'AutoGener:ingre_delete' ingre.name %}" >&times;</a>
         </p>
   {% empty %}
-    <div><p>还没有食材哦！</p></div>
+    <div><p>{% trans "还没有食材哦" %}！</p></div>
   {% endfor %}
     </div>
 </div>
@@ -62,16 +66,16 @@
 
 {% block side %}
   <div>
-  <legend>简单计算</legend>
-    <p>单位不规则？在下方输入数据
+  <legend>{% trans "简单计算" %}</legend>
+    <p>{% trans "单位不规则？在下方输入数据" %}
     <br>
-    <input id="calo" class="col-form-label col-form-label-sm" placeholder="卡路里" />卡
+    <input id="calo" class="col-form-label col-form-label-sm" placeholder="卡路里" />cal
     <br>
     <br>
     <input id="weight" class="col-form-label col-form-label-sm" placeholder="克数" />g
     <br>
     <br>
-    <button class="btn btn-primary" id="calculate" >计算并填到左边</button>
+    <button class="btn btn-primary" id="calculate" >{% trans "计算并填到左边" %}</button>
 
   </div>
 {% endblock %}

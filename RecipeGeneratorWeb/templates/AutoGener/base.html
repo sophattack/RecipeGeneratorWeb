@@ -103,7 +103,7 @@ function reply_click(name)
 }
 </script>
 
-<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+<!--<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js">-->
  <!--<script type="text/javascript">-->
 <!--$(document).ready(function(){-->
 	<!--$("#aaaa").clcik(function(){-->
@@ -146,8 +146,9 @@ function reply_click(name)
   });
 </script>
 
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="{% url 'AutoGener:index' %}">排排菜</a>
+  <a class="navbar-brand" href="{% url 'AutoGener:index' %}">{% trans "排排菜" %}</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -155,35 +156,44 @@ function reply_click(name)
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="{% url 'AutoGener:index' %}">首页 <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{% url 'AutoGener:index' %}">{% trans "首页" %}<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="{% url 'AutoGener:schedule' %}">安排</a>
+        <a class="nav-link" href="{% url 'AutoGener:schedule' %}">{% trans "一周安排" %}</a>
       </li>
             <li class="nav-item active">
-        <a class="nav-link" href="{% url 'AutoGener:dish' %}">菜单</a>
+        <a class="nav-link" href="{% url 'AutoGener:dish' %}">{% trans "我的菜单" %}</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="{% url 'AutoGener:ingredient' %}">食材</a>
+        <a class="nav-link" href="{% url 'AutoGener:ingredient' %}">{% trans "我的食材" %}</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="#">About</a>
-      </li>
-    </ul>
-    <!--<form class="form-inline my-2 my-lg-0">-->
-      <!--<input class="form-control mr-sm-2" type="text" placeholder="Search">-->
-      <!--<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>-->
-    <!--</form>-->
-
-      <form class="form-inline my-2 my-lg-0" method="POST" action="{% url 'AutoGener:dish' %}">
+               <form class="form-inline my-2 my-lg-0" method="POST" action="{% url 'AutoGener:dish' %}">
         {% csrf_token %}
       <input class="form-control mr-sm-2" type="text" placeholder="输入食材或菜品" name="dish_wanted">
       {% if dish.name %}
-        <a href="{% url 'AutoGener:dish' %}" class="btn btn-secondary my-2 my-sm-0">返回</a>
+        <a href="{% url 'AutoGener:dish' %}" class="btn btn-secondary my-2 my-sm-0">{% trans "返回" %}</a>
       {% else %}
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">搜索</button>
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">{% trans "搜索" %}</button>
       {% endif %}
     </form>
+      </li>
+
+    </ul>
+
+        <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+          <input type="hidden" value="{{ redirect_to }}">
+          <select name="language" class="form-control " onChange="form.submit();">
+              {% get_current_language as LANGUAGE_CODE %}
+              {% get_available_languages as LANGUAGES %}
+              {% get_language_info_list for LANGUAGES as languages %}
+              {% for language in languages %}
+                  <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                      {{ language.name_local }} ({{ language.code }})
+                  </option>
+              {% endfor %}
+          </select>
+         </form>
   </div>
 </nav>
 

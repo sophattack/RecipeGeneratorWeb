@@ -1,0 +1,140 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-08-01 15:18-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: templates/AutoGener/base.html:7
+msgid "排排菜，安排你的一周食谱"
+msgstr "MyDishScheduler, arrange your weekl dish easliy"
+
+#: templates/AutoGener/base.html:150
+msgid "排排菜"
+msgstr "MyDishScheduler"
+
+#: templates/AutoGener/base.html:158
+msgid "首页"
+msgstr "Home"
+
+#: templates/AutoGener/base.html:161
+msgid "一周安排"
+msgstr "Schedule"
+
+#: templates/AutoGener/base.html:164
+msgid "我的菜单"
+msgstr "MyDishes"
+
+#: templates/AutoGener/base.html:167
+msgid "我的食材"
+msgstr "MyIngredients"
+
+#: templates/AutoGener/base.html:182
+msgid "返回"
+msgstr "Back"
+
+#: templates/AutoGener/base.html:184
+msgid "搜索"
+msgstr "Search"
+
+#: templates/AutoGener/dishform.html:9
+msgid "添加我会做的菜"
+msgstr "Add Dishes I can Do"
+
+#: templates/AutoGener/dishform.html:12
+msgid "菜名"
+msgstr "Dish Name"
+
+#: templates/AutoGener/dishform.html:17
+#: templates/AutoGener/ingredientform.html:11
+msgid "食材"
+msgstr "Ingredient Basket"
+
+#: templates/AutoGener/dishform.html:24
+msgid "分类"
+msgstr "Type"
+
+#: templates/AutoGener/dishform.html:32
+msgid "前往添加食材"
+msgstr "Go to add this ingredient "
+
+#: templates/AutoGener/dishform.html:33
+msgid "添加菜品"
+msgstr "Add dish"
+
+#: templates/AutoGener/dishform.html:51
+msgid "我会做的菜"
+msgstr "Dish I can do"
+
+#: templates/AutoGener/dishform.html:59
+msgid "还没有会做的菜哦"
+msgstr "Start developing your capable dishes today@"
+
+#: templates/AutoGener/dishform.html:89 templates/AutoGener/schedule.html:23
+msgid "计算"
+msgstr "Calculate"
+
+#: templates/AutoGener/ingredientform.html:8
+#: templates/AutoGener/ingredientform.html:27
+msgid "添加食材"
+msgstr "Add ingredient"
+
+#: templates/AutoGener/ingredientform.html:15
+msgid "卡路里"
+msgstr "Cal"
+
+#: templates/AutoGener/ingredientform.html:18
+msgid "查询"
+msgstr "Search"
+
+#: templates/AutoGener/ingredientform.html:18
+msgid "卡路里查询"
+msgstr "Search for cal details"
+
+#: templates/AutoGener/ingredientform.html:20
+msgid "单位不标准？：在右侧计算"
+msgstr "Calculate cal out of 100g on the right easily"
+
+#: templates/AutoGener/ingredientform.html:22
+msgid "摸不清准确卡路里数据？没关系，填大约值，在计算菜品总热量时可以即时修改"
+msgstr "It's okay if you put in a rough number."
+
+#: templates/AutoGener/ingredientform.html:26
+msgid "前往添加新菜"
+msgstr "Go to add my new dish."
+
+#: templates/AutoGener/ingredientform.html:48
+msgid "我能买到的食材"
+msgstr "Ingredients I can get"
+
+#: templates/AutoGener/ingredientform.html:55
+msgid "还没有食材哦"
+msgstr "There's no ingredient in the basket."
+
+#: templates/AutoGener/ingredientform.html:69
+msgid "简单计算"
+msgstr "Calculate"
+
+#: templates/AutoGener/ingredientform.html:70
+msgid "单位不规则？在下方输入数据"
+msgstr "Not out of 100g? Input your data below."
+
+#: templates/AutoGener/ingredientform.html:78
+msgid "计算并填到左边"
+msgstr "Calculate and put to the left"
+
+#: templates/AutoGener/schedule.html:43
+msgid "没有菜品"
+msgstr "There's not dish."

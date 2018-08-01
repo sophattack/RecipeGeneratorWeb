@@ -1,4 +1,5 @@
 {% extends 'AutoGener/base.html' %}
+{% load i18n %}
 
 {% block left %}
 
@@ -14,13 +15,13 @@
             <form action="" method="post">
               {% csrf_token %}
               <input id="{{ dish.name }}{{ forloop.counter }}_weight"  min="0" placeholder="克数" style="width: 18%"/>g&times;
-              <input id="{{ dish.name }}{{ forloop.counter }}_data" value="{{ ingre.cal }}" style="width: 18%">卡/100克
-              =<input class="{{ dish.name }}_cal_result" id="{{ dish.name }}{{ forloop.counter }}_each" style="width: 18%" disabled=""/>卡
+              <input id="{{ dish.name }}{{ forloop.counter }}_data" value="{{ ingre.cal }}" style="width: 18%">cal/100g
+              =<input class="{{ dish.name }}_cal_result" id="{{ dish.name }}{{ forloop.counter }}_each" style="width: 18%" disabled=""/>cal
             </form>
       </div>
    {% endfor %}
-  <button id="{{ dish.name }}" onClick="reply_click(this.id)" class="btn btn-primary btn-sm">计算</button>
-  total = <input id="{{ dish.name }}_cal" style="width: 18%" />卡
+  <button id="{{ dish.name }}" onClick="reply_click(this.id)" class="btn btn-primary btn-sm">{% trans "计算" %}</button>
+  total = <input id="{{ dish.name }}_cal" style="width: 18%" />cal
 
   </div>
 </div>
@@ -39,7 +40,7 @@
     {% for dish in type.cando_set.all %}
       {{ dish.name }}
     {% empty %}
-      没有菜品
+      {% trans "没有菜品" %}
     {% endfor %}
 {% endfor %}
 <div class = "dishBlock">

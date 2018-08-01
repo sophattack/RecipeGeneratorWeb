@@ -1,27 +1,27 @@
 {% extends 'AutoGener/base.html' %}
-
+{% load i18n %}
 
 
 {% block main %}
 <div>
 <form action="/dish/" method="post">
   <fieldset>
-    <legend>添加我会做的菜</legend>
+    <legend>{% trans "添加我会做的菜" %}</legend>
     {% csrf_token %}
     <div class="form-group">
-      <label for="exampleInputPassword1">菜名</label>
+      <label for="exampleInputPassword1">{% trans "菜名" %}</label>
       {{ form.name }}
     </div>
 
     <div class="form-group">
-      <label for="exampleInputEmail1">食材</label>
+      <label for="exampleInputEmail1">{% trans "食材" %}</label>
       <form role="search" method="post" id="searchform" action="">
         <input type="text" name="dish_ingredient" placeholder="食材，用逗号隔开">
       </form>
     </div>
 
     <div class="form-group" id="type_list">
-      <label for="exampleInputPassword1">分类</label>
+      <label for="exampleInputPassword1">{% trans "分类" %}</label>
       {{ form.type }}
       <form method="get" action="addtype/">
         <button type="submit" class="btn btn-link">+</button>
@@ -29,8 +29,8 @@
       </form>
     </div>
 
-    <a class="btn btn-primary" target="_blank" href="{% url 'AutoGener:ingredient' %}" >前往添加食材</a>
-    <button type="submit" class="btn btn-primary">添加菜品</button>
+    <a class="btn btn-primary" target="_blank" href="{% url 'AutoGener:ingredient' %}" >{% trans "前往添加食材" %}</a>
+    <button type="submit" class="btn btn-primary">{% trans "添加菜品" %}</button>
   </fieldset>
 </form>
 </div>
@@ -48,7 +48,7 @@
 </div>
 
 <div >
-  <h2>我会做的菜</h2>
+  <h2>{% trans "我会做的菜" %}</h2>
 
   {% for dish in canDolist %}
     <p> <a href="{% url 'AutoGener:dish_detail' dish.name%}">{{ dish.name }}</a>
@@ -56,7 +56,7 @@
     </p>
     <!--需要加上食材+克数=最终卡路里-->
   {% empty %}
-    <div><p>还没有会做的菜哦！</p></div>
+    <div><p>{% trans "还没有会做的菜哦" %}</p></div>
   {% endfor %}
     </div>
 
@@ -80,14 +80,14 @@
           <label>{{ ingre.name }} </label>
             <form action="" method="post">
               {% csrf_token %}
-              <input id="{{ dish.name }}{{ forloop.counter }}_weight"  min="0" placeholder="克数" style="width: 18%"/>g&times;
-              <input id="{{ dish.name }}{{ forloop.counter }}_data" value="{{ ingre.cal }}" style="width: 18%">卡/100克
-              =<input class="{{ dish.name }}_cal_result" id="{{ dish.name }}{{ forloop.counter }}_each" style="width: 18%" disabled=""/>卡
+              <input id="{{ dish.name }}{{ forloop.counter }}_weight"  min="0"  style="width: 18%"/>g&times;
+              <input id="{{ dish.name }}{{ forloop.counter }}_data" value="{{ ingre.cal }}" style="width: 18%">cal/100g
+              =<input class="{{ dish.name }}_cal_result" id="{{ dish.name }}{{ forloop.counter }}_each" style="width: 18%" disabled=""/>cal
             </form>
       </div>
    {% endfor %}
-  <button id="{{ dish.name }}" onClick="reply_click(this.id)" class="btn btn-primary btn-sm">计算</button>
-  total = <input id="{{ dish.name }}_cal" style="width: 18%" />卡
+  <button id="{{ dish.name }}" onClick="reply_click(this.id)" class="btn btn-primary btn-sm">{% trans "计算" %}</button>
+  total = <input id="{{ dish.name }}_cal" style="width: 18%" />cal
 
   </div>
 </div>

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +26,7 @@ SECRET_KEY = 'dncn^u9o)r=%%oxet5ujio_e^3it)poay9t2$c&z_*le*9^vpl'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','xihuixu.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'xihuixu.pythonanywhere.com']
 
 
 # Application definition
@@ -52,8 +53,8 @@ MIDDLEWARE = [
 ]
 
 LANGUAGES = [
-    ('en', ('English')),
-    ('zh-hans', ('Chinese')),
+    ('en', _('English')),
+    ('zh-hans', _('Chinese')),
 ]
 
 LOCALE_PATHS = (
@@ -73,6 +74,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n'
             ],
         },
     },
@@ -114,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans'
 
 TIME_ZONE = 'UTC'
 
