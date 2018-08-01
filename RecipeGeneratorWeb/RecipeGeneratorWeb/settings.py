@@ -53,8 +53,8 @@ MIDDLEWARE = [
 ]
 
 LANGUAGES = [
-    ('en', _('English')),
     ('zh-hans', _('Chinese')),
+    ('en', _('English')),
 ]
 
 LOCALE_PATHS = (
