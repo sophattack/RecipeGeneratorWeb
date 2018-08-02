@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load i18n %}
+<!--背景不显示呜呜呜-->
+{% block main %}
+<div class="flex-center">
+    <div class="container">
+        <div>
+            {% if user.is_authenticated %}
+                 <h1>{{ user.username }}已登录，欢迎你</h1>
+                 <button class="btn btn-default"><a href="{% url 'logout' %}?next={{ request.path }}">注销登录</a></button>
+                  <button class="btn btn-default"><a href="{% url 'password_change' %}?next={{ request.path }}">修改密码</a>
+            {% else %}
+                <p>你还没有登录，请
+                    <button class="btn btn-default"><a href="{% url 'login' %}?next={{ request.path }}">登录</a></button>
+                    或者
+                    <button class="btn btn-default"><a href="{% url 'users:register' %}">注册</a></button>
+
+  </button>
+                </p>
+
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+<div  class="jumbotron">
+  <img>
+  <h1 class="display-3">Hello, A Healier Life Style<br> With Less Cost!</h1>
+  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <hr class="my-4">
+  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="#" role="button">Get Start with my food Basket!</a>
+  </p>
+</div>
+
+{% endblock %}
