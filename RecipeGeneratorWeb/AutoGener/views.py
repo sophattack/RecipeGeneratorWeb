@@ -10,10 +10,6 @@ from django.db.models import Q
 
 show_dishes = []
 
-def index(request):
-    """home page"""
-    return render(request, 'AutoGener/home.html')
-
 
 
 def get_dish(request):
