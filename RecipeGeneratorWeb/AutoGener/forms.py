@@ -7,7 +7,7 @@ class DishForm(forms.ModelForm):
     name = forms.CharField(max_length=10)
 
     def __init__(self, *args, **kwargs):
-        self.user = kwargs.pop("user")
+        self.user = kwargs.pop('user')
         super(DishForm, self).__init__(*args, **kwargs)
         self.fields['type'] = forms.ModelMultipleChoiceField(
                 widget=forms.CheckboxSelectMultiple, queryset=DishType.objects.filter(userid=self.user.id))

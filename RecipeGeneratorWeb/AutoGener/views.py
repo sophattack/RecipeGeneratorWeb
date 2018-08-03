@@ -51,7 +51,7 @@ def get_dish(request):
                 dish.userid = currentuser.id
                 dish.save()
                 form.save_m2m()
-                form = DishForm()
+                form = DishForm(user=request.user)
             if dish_ingredient_str:
                 not_in_ingre = ''
                 for ingredient in dish_ingredient_list:
