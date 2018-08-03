@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-01 15:18-0400\n"
+"POT-Creation-Date: 2018-08-03 22:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,37 +17,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: templates/AutoGener/base.html:7
-msgid "排排菜，安排你的一周食谱"
-msgstr "MyDishScheduler, arrange your weekl dish easliy"
+#: RecipeGeneratorWeb/settings.py:59
+msgid "Chinese"
+msgstr ""
 
-#: templates/AutoGener/base.html:150
-msgid "排排菜"
-msgstr "MyDishScheduler"
-
-#: templates/AutoGener/base.html:158
-msgid "首页"
-msgstr "Home"
-
-#: templates/AutoGener/base.html:161
-msgid "一周安排"
-msgstr "Schedule"
-
-#: templates/AutoGener/base.html:164
-msgid "我的菜单"
-msgstr "MyDishes"
-
-#: templates/AutoGener/base.html:167
-msgid "我的食材"
-msgstr "MyIngredients"
-
-#: templates/AutoGener/base.html:182
-msgid "返回"
-msgstr "Back"
-
-#: templates/AutoGener/base.html:184
-msgid "搜索"
-msgstr "Search"
+#: RecipeGeneratorWeb/settings.py:60
+msgid "English"
+msgstr ""
 
 #: templates/AutoGener/dishform.html:9
 msgid "添加我会做的菜"
@@ -131,6 +107,10 @@ msgstr "Calculate"
 msgid "单位不规则？在下方输入数据"
 msgstr "Not out of 100g? Input your data below."
 
+#: templates/AutoGener/ingredientform.html:75 templates/base.html:173
+msgid "输入食材或菜品"
+msgstr ""
+
 #: templates/AutoGener/ingredientform.html:78
 msgid "计算并填到左边"
 msgstr "Calculate and put to the left"
@@ -138,3 +118,86 @@ msgstr "Calculate and put to the left"
 #: templates/AutoGener/schedule.html:43
 msgid "没有菜品"
 msgstr "There's not dish."
+
+#: templates/base.html:7
+msgid "排排菜，安排你的一周食谱"
+msgstr "MyDishScheduler, arrange your weekl dish easliy"
+
+#: templates/base.html:151
+msgid "排排菜"
+msgstr "MyDishScheduler"
+
+#: templates/base.html:159
+msgid "首页"
+msgstr "Home"
+
+#: templates/base.html:162
+msgid "一周安排"
+msgstr "Schedule"
+
+#: templates/base.html:165
+msgid "我的菜单"
+msgstr "MyDishes"
+
+#: templates/base.html:168
+msgid "我的食材"
+msgstr "MyIngredients"
+
+#: templates/base.html:175
+msgid "返回"
+msgstr "Back"
+
+#: templates/base.html:177
+msgid "搜索"
+msgstr "Search"
+
+#: templates/home.html:9
+msgid "已登录，欢迎你"
+msgstr "logged in. Welcome"
+
+#: templates/home.html:10
+msgid "注销登录"
+msgstr "Logout"
+
+#: templates/home.html:11
+msgid "修改密码"
+msgstr "Change password"
+
+#: templates/home.html:13
+msgid "你还没有登录，请"
+msgstr "Please"
+
+#: templates/home.html:14
+msgid "登录"
+msgstr "login"
+
+#: templates/home.html:16
+msgid "注册"
+msgstr "register"
+
+#: templates/home.html:29
+msgid "一周饮食"
+msgstr "Plan your weekly Meal"
+
+#: templates/home.html:29
+msgid "尽在掌握"
+msgstr "In a second"
+
+#: templates/home.html:30
+msgid "你好，更有规划的生活方式。"
+msgstr "Hello, a better life style."
+
+#: templates/home.html:32
+msgid "根据生成的购物清单，一次购置一周食材。清晰又节省。"
+msgstr ""
+"Buying according to the produced shopping list weekly. Clear, Easy and save "
+"a lot."
+
+#: templates/home.html:34
+#, fuzzy
+#| msgid "我能买到的食材"
+msgid "从添加我能买到的食材开始"
+msgstr "Start with adding ingredients that I can get"
+
+#~ msgid "注销或者登录"
+#~ msgstr "logout"
