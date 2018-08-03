@@ -11,7 +11,6 @@ urlpatterns = [
     path('detail/<name>', views.get_dish_detail, name='dish_detail'),
     path(r'ingredient/<name>', views.ingre_delete, name='ingre_delete'),
     path('schedule/', views.get_scehdele, name='schedule'),
-    # path('', views.index, name='index'),
     path('dish/', views.get_dish, name='dish'),
     path('ingredient/', views.get_ingredient, name='ingredient')
 ]

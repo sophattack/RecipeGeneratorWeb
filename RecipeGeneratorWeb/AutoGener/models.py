@@ -2,15 +2,19 @@ from django.db import models
 
 # Create your models here.
 
+
 class DishType(models.Model):
     """The type of the dish. A dish can have multiple types."""
+    userid = models.IntegerField()
     name = models.CharField(max_length=20)
 
     def __str__(self):
         return self.name
 
+
 class CanGet(models.Model):
     """ the ingredients user can get"""
+    userid = models.IntegerField()
     name = models.CharField(max_length=10)
     cal = models.PositiveIntegerField()
 
@@ -20,13 +24,7 @@ class CanGet(models.Model):
 
 class CanDo(models.Model):
     """ the meal user can do"""
-    # TYPE_CHOICES = (
-    #     ('荤', '荤'),
-    #     ('素', '素'),
-    #     ('both', 'both'),
-    #     ('暂不选择', '暂不选择'),
-    #     ('主食', '主食')
-    # )
+    userid = models.IntegerField()
     name = models.CharField(max_length=100)
     type = models.ManyToManyField(DishType)
     ingre = models.ManyToManyField(CanGet, blank=True)
@@ -42,5 +40,3 @@ class Compose(models.Model):
 
     def __str__(self):
         return self.dish.name
-
-
