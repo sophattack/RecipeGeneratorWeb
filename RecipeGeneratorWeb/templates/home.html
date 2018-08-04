@@ -6,7 +6,7 @@
     <div class="container">
         <div>
             {% if user.is_authenticated %}
-                 <h1>{{ user.username }}{% trans '已登录，欢迎你' %} </h1>
+                 <h1>{{ user.username }} {% trans '已登录，欢迎你' %} </h1>
                  <button class="btn btn-default"><a href="{% url 'logout' %}?next={{ request.path }}">{% trans '注销登录' %}</a></button>
                   <button class="btn btn-default"><a href="{% url 'password_change' %}?next={{ request.path }}">{% trans '修改密码' %}</a>
             {% else %}
