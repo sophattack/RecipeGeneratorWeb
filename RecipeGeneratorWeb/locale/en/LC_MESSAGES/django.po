@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-03 22:24+0000\n"
+"POT-Creation-Date: 2018-08-04 00:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -109,7 +109,7 @@ msgstr "Not out of 100g? Input your data below."
 
 #: templates/AutoGener/ingredientform.html:75 templates/base.html:173
 msgid "输入食材或菜品"
-msgstr ""
+msgstr "input ingredient or dish"
 
 #: templates/AutoGener/ingredientform.html:78
 msgid "计算并填到左边"
@@ -194,10 +194,6 @@ msgstr ""
 "a lot."
 
 #: templates/home.html:34
-#, fuzzy
 #| msgid "我能买到的食材"
 msgid "从添加我能买到的食材开始"
-msgstr "Start with adding ingredients that I can get"
-
-#~ msgid "注销或者登录"
-#~ msgstr "logout"
+msgstr "Start with adding Ingredients I can get"
