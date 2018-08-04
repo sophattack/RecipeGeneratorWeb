@@ -16,7 +16,7 @@ class CanGet(models.Model):
     """ the ingredients user can get"""
     userid = models.IntegerField()
     name = models.CharField(max_length=10)
-    cal = models.PositiveIntegerField()
+    cal = models.PositiveIntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.name

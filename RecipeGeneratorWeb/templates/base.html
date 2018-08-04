@@ -180,7 +180,7 @@ function drop(ev) {
         <a class="nav-link" href="{% url 'AutoGener:ingredient' %}">{% trans "我的食材" %}</a>
       </li>
       <li class="nav-item active">
-               <form class="form-inline my-2 my-lg-0" method="POST" action="{% url 'AutoGener:dish' %}">
+    <form class="form-inline my-2 my-lg-0" method="POST" action="{% url 'AutoGener:dish' %}">
         {% csrf_token %}
       <input class="form-control mr-sm-2" type="text" placeholder="{% trans '输入食材或菜品' %}" name="dish_wanted">
       {% if dish.name %}

@@ -59,9 +59,12 @@ def get_dish(request):
                         ingre = cangetlist.get(name=ingredient)
                         dish.ingre.add(ingre)
                     except ObjectDoesNotExist:
+                        new_ingre = CanGet(userid=currentuser.id, name=ingredient)
+                        new_ingre.save()
+                        dish.ingre.add(new_ingre)
                         not_in_ingre += ingredient + '，'
                 if not_in_ingre:
-                    message = "以下食材不在食品库：%s 请先去添加食材，再添加菜品，才可计算卡路里哦" % not_in_ingre
+                    message = "以下食材不在食品库：%s 已经添加，但无法计算卡路里哦" % not_in_ingre
                 else:
                     message = '添加成功！'
             # 菜存在，但是没有食材
@@ -116,6 +119,7 @@ def get_dish_detail(request, name, search=False):
     form = DishForm(user=request.user)
     message = ''
     canDolist = CanDo.objects.filter(userid=request.user.id)
+    cangetlist = CanGet.objects.filter(userid=request.user.id)
     realted_dish = []
     ingre_list = []
     dish = CanDo()
@@ -130,13 +134,13 @@ def get_dish_detail(request, name, search=False):
             realted_dish += ingre.cando_set.filter(~Q(name=name)).all()
     except ObjectDoesNotExist:
         try:
-            ingre = CanGet.objects.get(name=name)
+            ingre = cangetlist.get(name=name)
             realted_dish = ingre.cando_set.all()
         except ObjectDoesNotExist:
             message = "%s不在你的菜单或食材库里" % name
     #不是搜索，显示所有菜
     if not search:
-        context = {'canDolist': canDolist, 'form': form, 'message': message, 'ingre_list': ingre_list, 'dish': dish,
+        context = {'canDolist': realted_dish, 'form': form, 'message': message, 'ingre_list': ingre_list, 'dish': dish,
                 'show_dishes': show_dishes}
     #搜索，显示相关菜
     else:
@@ -163,8 +167,8 @@ def get_ingredient(request):
                 if ingre.cal == int(request.POST.get('cal')):
                     duplicate = '已有该食材，请重新输入'
                 else:
-                    ingre.delete()
-                    raise ObjectDoesNotExist
+                    ingre.cal = int(request.POST.get('cal'))
+                    ingre.save()
             except ObjectDoesNotExist:
                 new_inge = form.save(commit=False)
                 new_inge.userid = request.user.id
