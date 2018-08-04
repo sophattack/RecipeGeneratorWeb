@@ -32,9 +32,6 @@
 
 
 
-{% block side %}
-
-
 <!--<div class = "dishBlock">-->
 <!--<div class="btn-group-vertical" data-toggle="buttons">-->
     <!--<form action="/schedule/" method="post">-->
@@ -93,25 +90,35 @@
 <!--</div>-->
 
 
-{% endblock %}
+
 
 {% block main %}
 
 {% for type in types %}
 <br>
-<h5>{{ type.name }}:<a class="close" href="{% url 'AutoGener:type_delete' type.name %}">&times;</a></h5>
+
+
+<div class="card border-primary mb-3" style="max-width: 20rem;">
+  <div class="card-header">{{ type.name }}:<a class="close" href="{% url 'AutoGener:type_delete' type.name %}">x</a></div>
+  <div class="card-body">
     {% for dish in type.cando_set.all %}
-      <div id="{{ type.name}}_{{ forloop.counter }}" draggable="true" ondragstart="drag(event)">{{ dish.name }}</div>
+      <div id="{{ type.name}}_{{ forloop.counter }}" draggable="true" ondragstart="drag(event)">
+        <p class="card-text">{{ dish.name }}</p>
+      </div>
     {% empty %}
       {% trans "没有菜品" %}
       <br>
     {% endfor %}
+  </div>
+</div>
+
 {% endfor %}
-<br>
-<br>
+
+{% endblock %}
 
 
-<div class = "tables">
+{% block side %}
+<div class = "tables" style="position: fixed;">
   <table>
     <tr>
       <th class="tg-88nc"></th>
@@ -153,10 +160,7 @@
       <td id="table-p6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
       <td id="table-p7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
-
   </table>
-</div>
-<div>
   <a href = "#" class = "btn btn-primary edit-block">Shopping List Generation</a>
 </div>
 
