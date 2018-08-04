@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-04 00:12+0000\n"
+"POT-Creation-Date: 2018-08-04 18:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -167,11 +167,13 @@ msgstr "Change password"
 msgid "你还没有登录，请"
 msgstr "Please"
 
-#: templates/home.html:14
+#: templates/home.html:14 templates/registration/login.html:10
+#: templates/registration/login.html:24 templates/registration/login.html:37
 msgid "登录"
 msgstr "login"
 
-#: templates/home.html:16
+#: templates/home.html:16 templates/users/register.html:10
+#: templates/users/register.html:24 templates/users/register.html:35
 msgid "注册"
 msgstr "register"
 
@@ -194,6 +196,21 @@ msgstr ""
 "a lot."
 
 #: templates/home.html:34
-#| msgid "我能买到的食材"
 msgid "从添加我能买到的食材开始"
 msgstr "Start with adding Ingredients I can get"
+
+#: templates/registration/login.html:40
+msgid "没有账号"
+msgstr "no account"
+
+#: templates/registration/login.html:40
+msgid "立即注册"
+msgstr "register now"
+
+#: templates/registration/login.html:41
+msgid "忘记密码"
+msgstr "forget password"
+
+#: templates/users/register.html:38
+msgid "已有账号登录"
+msgstr "login with existing account"
