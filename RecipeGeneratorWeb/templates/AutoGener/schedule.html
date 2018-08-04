@@ -32,7 +32,7 @@
 
 
 
-{% block main %}
+{% block side %}
 
 
 <!--<div class = "dishBlock">-->
@@ -50,18 +50,18 @@
 <!--</div>-->
 <!--</div>-->
 
-<br>
+<!--<br>-->
 
-<div id="alertBlock">
-  {% if message %}
-  <div class="alert alert-dismissible alert-danger">
-    <button type="button" class="close" data-dismiss="alert" id="closeButton">&times;</button>
-    <strong>{{ message }}</strong>
-  </div>
-  {% endif %}
-</div>
+<!--<div id="alertBlock">-->
+  <!--{% if message %}-->
+  <!--<div class="alert alert-dismissible alert-danger">-->
+    <!--<button type="button" class="close" data-dismiss="alert" id="closeButton">&times;</button>-->
+    <!--<strong>{{ message }}</strong>-->
+  <!--</div>-->
+  <!--{% endif %}-->
+<!--</div>-->
 
-<br>
+<!--<br>-->
 
 
 
@@ -92,20 +92,27 @@
 <!--</div>-->
 <!--</div>-->
 
+
+{% endblock %}
+
+{% block main %}
+
 {% for type in types %}
 <br>
 <h5>{{ type.name }}:<a class="close" href="{% url 'AutoGener:type_delete' type.name %}">&times;</a></h5>
-    <!--<div id="{{ type.name}}_box" ondrop="drop(event)" ondragover="allowDrop(event)">-->
     {% for dish in type.cando_set.all %}
       <div id="{{ type.name}}_{{ forloop.counter }}" draggable="true" ondragstart="drag(event)">{{ dish.name }}</div>
     {% empty %}
       {% trans "没有菜品" %}
-    <br>
+      <br>
     {% endfor %}
-    <!--</div>-->
 {% endfor %}
+<br>
+<br>
+
+
 <div class = "tables">
-  <table class="tg">
+  <table>
     <tr>
       <th class="tg-88nc"></th>
       <th class="tg-88nc">Mon</th>
@@ -152,7 +159,5 @@
 <div>
   <a href = "#" class = "btn btn-primary edit-block">Shopping List Generation</a>
 </div>
-
-
 
 {% endblock %}
