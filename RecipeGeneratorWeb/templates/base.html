@@ -103,26 +103,24 @@ function reply_click(name)
 }
 </script>
 
-<!--<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js">-->
- <!--<script type="text/javascript">-->
-<!--$(document).ready(function(){-->
-	<!--$("#aaaa").clcik(function(){-->
-	    <!--var type_name=document.getElementById('type_name').value;-->
-	    <!--if(!(type_name)){-->
-	      <!--alert("请输入新分类");-->
-	    <!--}-->
-	    <!--else{-->
-		  <!--$.ajax({-->
-		  <!--url:"{% url "AutoGener:add_type" %}",-->
-		  <!--data:{name:type_name},-->
-		  <!--success:function(result){-->
-            <!--alert(result);-->
-		    <!--};-->
-		  <!--});-->
-		<!--};-->
-	<!--});-->
-<!--});-->
- <!--</script>-->
+<script>
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    var nodeCopy = document.getElementById(data).cloneNode(true);
+    nodeCopy.id = data + ev.id
+    <!--alert(data + ev.target.id)-->
+    ev.target.appendChild(nodeCopy);
+}
+</script>
 
 <script>
   $(document).ready(function(){

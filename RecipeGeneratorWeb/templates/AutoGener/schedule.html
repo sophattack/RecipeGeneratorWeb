@@ -34,29 +34,21 @@
 
 {% block main %}
 
-{% for type in types %}
-<h5>{{ type.name }}:
-    <a class="close" href="{% url 'AutoGener:type_delete' type.name %}">&times;</a></h5>
-    {% for dish in type.cando_set.all %}
-      {{ dish.name }}
-    {% empty %}
-      {% trans "没有菜品" %}
-    {% endfor %}
-{% endfor %}
-<div class = "dishBlock">
-<div class="btn-group-vertical" data-toggle="buttons">
-    <form action="/schedule/" method="post">
-            {% csrf_token %}
-        <div class="form-group">
-          <legend>需要几道不同的菜？</legend>
-          <input type="text" class="form-control" name="numNeed" placeholder="需要道数">
-          <legend>指定想吃食材</legend>
-          <input type="text" class="form-control" name="wantEat" placeholder="已有/想吃食材，用逗号隔开">
-        </div>
-        <button type="submit" class="btn btn-primary">随机抽取</button>
-    </form>
-</div>
-</div>
+
+<!--<div class = "dishBlock">-->
+<!--<div class="btn-group-vertical" data-toggle="buttons">-->
+    <!--<form action="/schedule/" method="post">-->
+            <!--{% csrf_token %}-->
+        <!--<div class="form-group">-->
+          <!--<legend>需要几道不同的菜？</legend>-->
+          <!--<input type="text" class="form-control" name="numNeed" placeholder="需要道数">-->
+          <!--<legend>指定想吃食材</legend>-->
+          <!--<input type="text" class="form-control" name="wantEat" placeholder="已有/想吃食材，用逗号隔开">-->
+        <!--</div>-->
+        <!--<button type="submit" class="btn btn-primary">随机抽取</button>-->
+    <!--</form>-->
+<!--</div>-->
+<!--</div>-->
 
 <br>
 
@@ -71,35 +63,47 @@
 
 <br>
 
-<div class = "dishBlock">
-  <div>
-  <h2>安排下列菜品咯</h2>
-  <br>
-  {% for dish in random_dish %}
-      <p> <a href="{% url 'AutoGener:dish_detail' dish.name %}">{{ dish.name }}</a></p>
-  {% empty %}
-      <div><p>还没有添加会做的菜哦哦！<a hred="{% url 'AutoGener:dish'%}">点击添加</a></p></div>
-  </div>
-  {% endfor %}
-  {% if required_dish %}
-  <p>包含输入的食材的菜:</p>
-  {% for dish in required_dish %}
-      <p> <a href="{% url 'AutoGener:dish_detail' dish.name %}">{{ dish.name }}</a></p>
-  </div>
-  {% endfor %}
-  {% endif %}
-</div>
-
-<div class = "dishBlock">
-<div class="btn-group-vertical" data-toggle="buttons">
-    <form action="/schedule/" method="post">
-            {% csrf_token %}
-         <button type="submit" class="btn btn-primary">安排上吧</button>
-    </form>
-</div>
-</div>
 
 
+<!--<div class = "dishBlock">-->
+  <!--<div>-->
+  <!--<h2>安排下列菜品咯</h2>-->
+  <!--<br>-->
+  <!--{% for dish in random_dish %}-->
+      <!--<p> <a href="{% url 'AutoGener:dish_detail' dish.name %}">{{ dish.name }}</a></p>-->
+  <!--{% empty %}-->
+      <!--<div><p>还没有添加会做的菜哦哦！<a hred="{% url 'AutoGener:dish'%}">点击添加</a></p></div>-->
+  <!--</div>-->
+  <!--{% endfor %}-->
+  <!--{% if required_dish %}-->
+  <!--<p>包含输入的食材的菜:</p>-->
+  <!--{% for dish in required_dish %}-->
+      <!--<p> <a href="{% url 'AutoGener:dish_detail' dish.name %}">{{ dish.name }}</a></p>-->
+  <!--{% endfor %}-->
+  <!--{% endif %}-->
+<!--</div>-->
+
+<!--<div class = "dishBlock">-->
+<!--<div class="btn-group-vertical" data-toggle="buttons">-->
+    <!--<form action="/schedule/" method="post">-->
+            <!--{% csrf_token %}-->
+         <!--<button type="submit" class="btn btn-primary">安排上吧</button>-->
+    <!--</form>-->
+<!--</div>-->
+<!--</div>-->
+
+{% for type in types %}
+<br>
+<h5>{{ type.name }}:<a class="close" href="{% url 'AutoGener:type_delete' type.name %}">&times;</a></h5>
+    <!--<div id="{{ type.name}}_box" ondrop="drop(event)" ondragover="allowDrop(event)">-->
+    {% for dish in type.cando_set.all %}
+      <div id="{{ type.name}}_{{ forloop.counter }}" draggable="true" ondragstart="drag(event)">{{ dish.name }}</div>
+    {% empty %}
+      {% trans "没有菜品" %}
+    <br>
+    {% endfor %}
+    <!--</div>-->
+{% endfor %}
 <div class = "tables">
   <table class="tg">
     <tr>
@@ -114,198 +118,35 @@
     </tr>
     <tr>
       <td class="tg-88nc">AM</td>
-      <td class="tg-uys7 a1">
-        <select name = "dishes">
-          <option value = "default">default</option>
-          {% for dish in random_dish %}
-          <option value = "default">{{ dish.name }}</option>
-          {% endfor %}
-        </select>
-      </td>
-      <td class="tg-uys7 a2">
-        <select name = "dishes">
-          <option value = "default">default</option>
-          {% for dish in random_dish %}
-          <option value = "default">{{ dish.name }}</option>
-          {% endfor %}
-        </select>
-      </td>
-      <td class="tg-yw4l a3">
-        <select name = "dishes">
-          <option value = "default">default</option>
-          {% for dish in random_dish %}
-          <option value = "default">{{ dish.name }}</option>
-          {% endfor %}
-        </select>
-      </td>
-      <td class="tg-yw4l a4">
-        <select name = "dishes">
-          <option value = "default">default</option>
-          {% for dish in random_dish %}
-          <option value = "default">{{ dish.name }}</option>
-          {% endfor %}
-        </select>
-      </td>
-      <td class="tg-yw4l a5">
-        <select name = "dishes">
-          <option value = "default">default</option>
-          {% for dish in random_dish %}
-          <option value = "default">{{ dish.name }}</option>
-          {% endfor %}
-        </select>
-      </td>
-      <td class="tg-yw4l a6">
-        <select name = "dishes">
-          <option value = "default">default</option>
-          {% for dish in random_dish %}
-          <option value = "default">{{ dish.name }}</option>
-          {% endfor %}
-        </select>
-      </td>
-      <td class="tg-yw4l a7">
-        <select name = "dishes">
-          <option value = "default">default</option>
-          {% for dish in random_dish %}
-          <option value = "default">{{ dish.name }}</option>
-          {% endfor %}
-        </select>
-      </td>
+      <td id="table-a1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td id="table-a2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td id="table-a3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td id="table-a4" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td id="table-a5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td id="table-a6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td id="table-a7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
     <tr>
       <td class="tg-88nc">NOON</td>
-      <td class="tg-uys7 n1">
-        <select name = "dishes">
-          <option value = "default">default</option>
-          {% for dish in random_dish %}
-          <option value = "default">{{ dish.name }}</option>
-          {% endfor %}
-        </select>
-      </td>
-      <td class="tg-uys7 n2">
-        <select name = "dishes">
-          <option value = "default">default</option>
-          {% for dish in random_dish %}
-          <option value = "default">{{ dish.name }}</option>
-          {% endfor %}
-        </select>
-      </td>
-      <td class="tg-yw4l n3">
-        <select name = "dishes">
-          <option value = "default">default</option>
-          {% for dish in random_dish %}
-          <option value = "default">{{ dish.name }}</option>
-          {% endfor %}
-        </select>
-      </td>
-      <td class="tg-yw4l n4">
-        <select name = "dishes">
-          <option value = "default">default</option>
-          {% for dish in random_dish %}
-          <option value = "default">{{ dish.name }}</option>
-          {% endfor %}
-        </select>
-      </td>
-      <td class="tg-yw4l n5">
-        <select name = "dishes">
-          <option value = "default">default</option>
-          {% for dish in random_dish %}
-          <option value = "default">{{ dish.name }}</option>
-          {% endfor %}
-        </select>
-      </td>
-      <td class="tg-yw4l n6">
-        <select name = "dishes">
-          <option value = "default">default</option>
-          {% for dish in random_dish %}
-          <option value = "default">{{ dish.name }}</option>
-          {% endfor %}
-        </select>
-      </td>
-      <td class="tg-yw4l n7">
-        <select name = "dishes">
-          <option value = "default">default</option>
-          {% for dish in random_dish %}
-          <option value = "default">{{ dish.name }}</option>
-          {% endfor %}
-        </select>
-      </td>
+      <td id="table-n1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td id="table-n2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td id="table-n3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td id="table-n4" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td id="table-n5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td id="table-n6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td id="table-n7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
     <tr>
       <td class="tg-88nc">PM</td>
-      <td class="tg-uys7 p1">
-        <select name = "dishes">
-          <option value = "default">default</option>
-          {% for dish in random_dish %}
-          <option value = "default">{{ dish.name }}</option>
-          {% endfor %}
-        </select>
-      </td>
-      <td class="tg-uys7 p2">
-        <select name = "dishes">
-          <option value = "default">default</option>
-          {% for dish in random_dish %}
-          <option value = "default">{{ dish.name }}</option>
-          {% endfor %}
-        </select>
-      </td>
-      <td class="tg-yw4l p3">
-        <select name = "dishes">
-          <option value = "default">default</option>
-          {% for dish in random_dish %}
-          <option value = "default">{{ dish.name }}</option>
-          {% endfor %}
-        </select>
-      </td>
-      <td class="tg-yw4l p4">
-        <select name = "dishes">
-          <option value = "default">default</option>
-          {% for dish in random_dish %}
-          <option value = "default">{{ dish.name }}</option>
-          {% endfor %}
-        </select>
-      </td>
-      <td class="tg-yw4l p5">
-        <select name = "dishes">
-          <option value = "default">default</option>
-          {% for dish in random_dish %}
-          <option value = "default">{{ dish.name }}</option>
-          {% endfor %}
-        </select>
-      </td>
-      <td class="tg-yw4l p6">
-        <select name = "dishes">
-          <option value = "default">default</option>
-          {% for dish in random_dish %}
-          <option value = "default">{{ dish.name }}</option>
-          {% endfor %}
-        </select>
-      </td>
-      <td class="tg-yw4l p7">
-        <select name = "dishes">
-          <option value = "default">default</option>
-          {% for dish in random_dish %}
-          <option value = "default">{{ dish.name }}</option>
-          {% endfor %}
-        </select>
-      </td>
+      <td id="table-p1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td id="table-p2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td id="table-p3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td id="table-p4" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td id="table-p5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td id="table-p6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td id="table-p7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
-    <tr>
-        <td class="tg-88nc">Today's Total Calories</td>
-        <td class="tg-uys7 t1">
-        </td>
-        <td class="tg-uys7 t2">
-        </td>
-        <td class="tg-yw4l t3">
-        </td>
-        <td class="tg-yw4l t4">
-        </td>
-        <td class="tg-yw4l t5">
-        </td>
-        <td class="tg-yw4l t6">
-        </td>
-        <td class="tg-yw4l t7">
-        </td>
-      </tr>
+
   </table>
 </div>
 <div>
