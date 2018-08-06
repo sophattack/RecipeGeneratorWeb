@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-04 18:23+0000\n"
+"POT-Creation-Date: 2018-08-06 12:37-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -107,7 +107,7 @@ msgstr "Calculate"
 msgid "单位不规则？在下方输入数据"
 msgstr "Not out of 100g? Input your data below."
 
-#: templates/AutoGener/ingredientform.html:75 templates/base.html:173
+#: templates/AutoGener/ingredientform.html:75 templates/base.html:191
 msgid "输入食材或菜品"
 msgstr "input ingredient or dish"
 
@@ -115,7 +115,7 @@ msgstr "input ingredient or dish"
 msgid "计算并填到左边"
 msgstr "Calculate and put to the left"
 
-#: templates/AutoGener/schedule.html:43
+#: templates/AutoGener/schedule.html:109
 msgid "没有菜品"
 msgstr "There's not dish."
 
@@ -123,31 +123,31 @@ msgstr "There's not dish."
 msgid "排排菜，安排你的一周食谱"
 msgstr "MyDishScheduler, arrange your weekl dish easliy"
 
-#: templates/base.html:151
+#: templates/base.html:169
 msgid "排排菜"
 msgstr "MyDishScheduler"
 
-#: templates/base.html:159
+#: templates/base.html:177
 msgid "首页"
 msgstr "Home"
 
-#: templates/base.html:162
+#: templates/base.html:180
 msgid "一周安排"
 msgstr "Schedule"
 
-#: templates/base.html:165
+#: templates/base.html:183
 msgid "我的菜单"
 msgstr "MyDishes"
 
-#: templates/base.html:168
+#: templates/base.html:186
 msgid "我的食材"
 msgstr "MyIngredients"
 
-#: templates/base.html:175
+#: templates/base.html:193
 msgid "返回"
 msgstr "Back"
 
-#: templates/base.html:177
+#: templates/base.html:195
 msgid "搜索"
 msgstr "Search"
 
@@ -159,7 +159,7 @@ msgstr "logged in. Welcome"
 msgid "注销登录"
 msgstr "Logout"
 
-#: templates/home.html:11
+#: templates/home.html:11 templates/registration/password_change_form.html:25
 msgid "修改密码"
 msgstr "Change password"
 
@@ -173,7 +173,7 @@ msgid "登录"
 msgstr "login"
 
 #: templates/home.html:16 templates/users/register.html:10
-#: templates/users/register.html:24 templates/users/register.html:35
+#: templates/users/register.html.py:24 templates/users/register.html:35
 msgid "注册"
 msgstr "register"
 
@@ -196,8 +196,8 @@ msgstr ""
 "a lot."
 
 #: templates/home.html:34
-msgid "从添加我能买到的食材开始"
-msgstr "Start with adding Ingredients I can get"
+msgid "从添加我会做的菜开始"
+msgstr "Add Dishes I can Do"
 
 #: templates/registration/login.html:40
 msgid "没有账号"
@@ -211,6 +211,18 @@ msgstr "register now"
 msgid "忘记密码"
 msgstr "forget password"
 
+#: templates/registration/password_change_done.html:11
+#: templates/registration/password_change_done.html:19
+msgid "修改成功"
+msgstr "Changed successfully"
+
+#: templates/registration/password_change_form.html:37
+msgid "确定修改"
+msgstr "Change"
+
 #: templates/users/register.html:38
 msgid "已有账号登录"
 msgstr "login with existing account"
+
+#~ msgid "从添加我能买到的食材开始"
+#~ msgstr "Start with adding Ingredients I can get"
